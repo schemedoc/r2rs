@@ -272,175 +272,156 @@ by reserving the identifiers that serve as keywords of special forms,
 while other implementations allow the keyword meaning of an identifier
 to be shadowed by lexical bindings.
 
------
+    <expression> ::= <constant> | <identifier> |
+                     <special form> | <procedure call>
+    <constant> ::= <numeral> | <string> |
+                   (quote <datum>) | '<datum> |
+                   #!true | #!false | #!null
+    <special form> ::= (<keyword> <syntactic component> ...)
+    <procedure call> ::= (<operator> <operands>)
+    <operator> := <expression>
+    <operands> := <empty> | <expression> <operands>
 
-<expression> ::- <constant>
+<datum> stands for any written representation of a Scheme object, as
+described in the sections that follow. <identifier> has already been
+described informally. <numeral> is described in section 1.6, and
+<string> is described in section II.8. <special form> stands for one
+of the special forms whose syntax is described in section II.1. For
+uniformity the other kinds of expressions are also described in that
+section as though they were special forms.
 
-7
+## I.2 Semantics
 
-(identifier> I
-<
-
-<special form> I <procedure call>
-numeral> I <string> I
-(quote (datum>) I '<datum> I
-*ltrue I #lfalse I flnull
-
-<constant> ::-
-
-<special form> ::-
-
-(<keyword> <syntactic component>
-
-<procedure call> ::-
-
-...
-
-)
-
-(<operator> <operands>)
-
-<operator>
-
-(expression>
-<
-
-<operands> ::
-
-<empty> I <expression> <operands>
-
-<datum> stands for any written representation of a Scheme object, as described inthe sections that follow. <identifier> has already been described
-informally. <numeral> isdescribed insection 1.6, and <string> isdescribed
-insection 11.8. <special form> stands for one of the special forms whose syntax isdescribed insection 11.1. For uniformity the other kinds of expressions
-are also described inthat section as though they were special forms.
-1.2 Semantics
 A formal definition of the semantics of Scheme will be included in a
-separate report. The detailed informal semantics of Scheme is the subject of
-Part II. This section gives a quick review of Scheme's major characteristics.
-Scheme is a statically scoped programming language. Each use of an identifier is associated with a lexically apparent binding of that identifier. In this
-respect Scheme is like Algol 60, Pascal, and C but unlike dynamically scoped
-languages such as APL and traditional Lisp.
-Scheme has latent as opposed to manifest types. Types are associated with
-values (also called objects) rather than with variables. (Some authors refer to
-languages with latent types as weally typed or dynamically typed languages.)
-Other languages with latent types are APL, Snobol, and other dialects of Lisp.
-Languages with manifest types (sometimes referred to as strongly typed or
-statically typed languages) include Algol 60, Pascal, and C.
-All objects created in the course of a Scheme computation, including all procedures and variables, have unlimited extent. No Scheme object is ever destroyed. The reason that implementations of Scheme do not (usually!) run
+separate report. The detailed informal semantics of Scheme is the
+subject of Part II. This section gives a quick review of Scheme's
+major characteristics.
 
-%e
+Scheme is a statically scoped programming language. Each use of an
+identifier is associated with a lexically apparent binding of that
+identifier. In this respect Scheme is like Algol 60, Pascal, and C but
+unlike dynamically scoped languages such as APL and traditional Lisp.
 
-'e
+Scheme has latent as opposed to manifest types. Types are associated
+with values (also called objects) rather than with variables. (Some
+authors refer to languages with latent types as weally typed or
+dynamically typed languages.) Other languages with latent types are
+APL, Snobol, and other dialects of Lisp. Languages with manifest types
+(sometimes referred to as strongly typed or statically typed
+languages) include Algol 60, Pascal, and C.
 
-"
+All objects created in the course of a Scheme computation, including
+all procedures and variables, have unlimited extent. No Scheme object
+is ever destroyed. The reason that implementations of Scheme do not
+(usually!) run out of storage is that they awe permitted to reclaim
+the storage occupied by an object if they can prove that the object
+cannot possibly matter to any future computation. Other languages in
+which most objects have unlimited extent include APL and other Lisp
+dialects.
 
-... .
+Implementations of Scheme are required to be properly tail-recursive.
+This allows the execution of an iterative process in constant space,
+even if the iterative process is described by a syntactically
+recursive procedure. Thus with a tail-recursive implementation,
+iteration can be expressed using the ordinary procedure-call
+mechanics, so that special iteration constructs are useful only as
+syntactic sugar.
 
-. .
+Scheme procedures are objects in their own right. Procedures can be
+created dynamically, stored in data structures, returned as results of
+procedures, and so on. Other languages with these properties iuiclude
+Common Lisp and ML.
 
-..
-
-The Revised Revised Report on SchemeS
-
-out of storage is that they awe permitted to reclaim the storage occupied by an
-object if they can prove that the object cannot possibly matter to any future
-computation. Other languages in which most objects have unlimited extent
-include APL and other Lisp dialects.%
-Implementations of Scheme are required to be properly tail-recursive. This
-allows the execution of an iterative process in constant space, even if the
-iterative process is described by a syntactically recursive procedure. Thus
-with a tail-recursive implementation, iteration can be expressed using the
-ordinary procedure-call mechanics, so that special iteration constructs are
-useful only as syntactic sugar.
-Scheme procedures are objects in their own right. Procedures can be created
-dynamically, stored in data structures, returned as results of procedures, and
-so on. Other languages with these properties iuiclude Common Lisp and ML.
 Arguments to Scheme procedures are always passed by value, which means
-that the actual argument expressions are evaluated before the proceduret gains
-control, whether the procedure needs the result of the evaluation or not. ML,
-C, and APL are three other languages that always pass arguments by value.
-Lazy ML passes arguments by name, so that an argument expression is evaluated only if its value is needed by the procedure.
+that the actual argument expressions are evaluated before the
+proceduret gains control, whether the procedure needs the result of
+the evaluation or not. ML, C, and APL are three other languages that
+always pass arguments by value. Lazy ML passes arguments by name, so
+that an argument expression is evaluated only if its value is needed
+by the procedure.
 
-The Revised Revised Report on Scheme
+# Part II: A catalog of Scheme
 
-9
+## II.0 Notational conventions
 
--PartH: A catalog of Scheme
-U1.0 Notational conventions
-
-7
-
-This part of the report is a catalog of the special forms and procedures
-that make up Scheme. The special forms are described in section 11.1, and the
-procedures are described in the following sections. Each section is organized
-into entries, with one entry (usually) for each special form or procedure. Each
-entry begins with a header line that includes the name of the special form or
-procedure in boldface type within a template for the special form or a call
-to the procedure. The names of the arguments to a procedure are italicized,
+This part of the report is a catalog of the special forms and
+procedures that make up Scheme. The special forms are described in
+section II.1, and the procedures are described in the following
+sections. Each section is organized into entries, with one entry
+(usually) for each special form or procedure. Each entry begins with a
+header line that includes the name of the special form or procedure in
+boldface type within a template for the special form or a call to the
+procedure. The names of the arguments to a procedure are _italicized_,
 as are the syntactic components of a special form. A notation such as
-expr ...
-indicates zero or more occurrences of ezpr. Thus
-expri exprt ...
-indicates at least one expr. At the right of the header line one of the following
-categories will appear:
-special form
-constant
-variable
-procedure
-essential special form
-essential constant
-essential variable
-essential procedure
-A special form is a syntactic class of expressions, usually identified by a keyword. A constant is something that is lexically recognizable as a constant.
-A variable is a location in which values (also called objects) can be stored.
-An identifier may be bound to a variable. Those variables that initially hold
-procedure values are identified as procedures.
-It is guaranteed that every implementation of Scheme will support the essential special forms, constants, variables, and procedures. Implementations
-are free to omit other features of Scheme or to add extensions, provided the
-extensions are not in conflict with the language reported here.
-Any Scheme value can be used as a boolean expression for the purpose of a
-conditional test. As explained in section 11.2, most values count as true, but
-a few-notably #I false-count as false. This manual uses the word 'true
 
-The Revised Revised Report on Scheme
+    expr ...
 
-10
+indicates zero or more occurrences of expr. Thus
 
-to refer to any Scheme value that counts as true in a conditional expression,
-and the word "false' to refer to any Scheme value that counts as false.
-When speaking of an error condition, this manual uses the phrase 'an error is
-signalled" to indicate that implementations must detect and report the error.
-If the magic word "signalled" does not appear in the discussion of an error,
-then implementations are not required to detect or report the error, though
-they are encouraged to do so. An error condition that implementations are
-not required to detect is usually referred to simply as "an error'.
-For example, it is an error for a procedure to be passed an argument that
-the procedure is not explicitly specified to handle, even though such domain
-errors are seldom mentioned in this manual. Implementations may extend a
-procedure's domain of definition to include other arguments.
+    expr1 expr2 ...
 
-ip
+indicates at least one _expr_. At the right of the header line one of
+the following categories will appear:
 
-I.;
+* special form
+* constant
+* variable
+* procedure
+* essential special form
+* essential constant
+* essential variable
+* essential procedure
 
-The Revised Revised Report on Scheme
+A special form is a syntactic class of expressions, usually identified
+by a keyword. A constant is something that is lexically recognizable
+as a constant. A variable is a location in which values (also called
+objects) can be stored. An identifier may be bound to a variable.
+Those variables that initially hold procedure values are identified as
+procedures.
 
-1
+It is guaranteed that every implementation of Scheme will support the
+essential special forms, constants, variables, and procedures.
+Implementations are free to omit other features of Scheme or to add
+extensions, provided the extensions are not in conflict with the
+language reported here.
 
-11.1. Special forms
+Any Scheme value can be used as a boolean expression for the purpose
+of a conditional test. As explained in section 11.2, most values count
+as true, but a few-notably #I false-count as false. This manual uses
+the word "true" to refer to any Scheme value that counts as true in a
+conditional expression, and the word "false" to refer to any Scheme
+value that counts as false.
 
-*
+When speaking of an error condition, this manual uses the phrase "an
+error is signalled" to indicate that implementations must detect and
+report the error. If the magic word "signalled" does not appear in the
+discussion of an error, then implementations are not required to
+detect or report the error, though they are encouraged to do so. An
+error condition that implementations are not required to detect is
+usually referred to simply as "an error".
+
+For example, it is an error for a procedure to be passed an argument
+that the procedure is not explicitly specified to handle, even though
+such domain errors are seldom mentioned in this manual.
+Implementations may extend a procedure's domain of definition to
+include other arguments.
+
+## II.1. Special forms
 
 Identifiers have two uses within Scheme programs. When an identifier
-appears within a quoted constant (see quote), it is being used as data as
-described in the section on symbols. Otherwise it is being used as a name.
-There are two kinds of things that an identifier can name in Scheme: special
-forms and variables A special form is a syntactic class of expressions, and
-an identifier that names a special form is called the keyword of that special
-form. A variable, on the other hand, is a location where a value can be stored.
-An identifier that names a variable is said to be bound to that location. The
-set of all such bindings in effect at some point in a program is known as the
-environment in effect at that point.
+appears within a quoted constant (see quote), it is being used as data
+as described in the section on symbols. Otherwise it is being used as
+a name. There are two kinds of things that an identifier can name in
+Scheme: _special forms_ and _variables_. A special form is a syntactic
+class of expressions, and an identifier that names a special form is
+called the _keyword_ of that special form. A variable, on the other
+hand, is a location where a value can be stored. An identifier that
+names a variable is said to be _bound_ to that location. The set of
+all such bindings in effect at some point in a program is known as the
+_environment_ in effect at that point.
+
+-----
+
 Certain special forms are used to allocate storage for new variables and to
 bind identifiers to those new variables. The most fundamental of these binding
 constructs is the lambda special form, because all other binding constructs can
