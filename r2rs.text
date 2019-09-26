@@ -17,632 +17,262 @@ In the Lambda Order they are all first-class.
 
 
 
-5
-.85
-
-9
-
-2
-
-2
-
-~ AG Ilee, Data EnIodj
-REPORT DOCUMENTATION PAGE
-
-Sf
-
-CUITs,CLASSIFCATIOM
-
-REPORT NAUNS
-
-OF TWS
-
-_________________
-
-READ INSTRUCTIONS
-BEFORE COMPLETING FORM
-
-2 GOVT ACCESSION NO*
-
-N
-
-AIM 848
-
-RC
-
-4. ?IT LE (andE Subif ea0
-
-7.
-
-/
-
-PERIOD COVERED
-
-AI Memo
-
-AUTN4OR(s)
-
-Hal Abelson et al
-
-a.
-
-PERFORMING ONG. R4EPORT NUMBER
-
-*
-I.-
-
-COO PACT Olt GRANT NUMBER(s)
-
-10.
-
-Artificial Intelligence Lab.
-
-f%
-~
-
-N00014-80-C-0505
-
-PERFORMING ORGANIZATION. NAME AMC ADDRESS
-
-9.
-
-NT*
-
-S. TYPE oF REPORT a
-
-The Revised Revised Report on Scheme or The
-Uncommon Lisp
-
-%
-
-CATALOG NUMBER
-
-PROGRAM ELEMENT. PROJECT. TASK
-AE
-
-OKUI
-
-UUR
-
-545 Technology Sq.
-Cambridge,_MA_02139______________
-
-11. CONTROLLING OFFICE NAME AND ADDRESS
-Advanced Research Proj ects Agency
-1400 Wilson Blvd.
-ArlnatnVA 22209_______________
-04MNtRN
-AGEN4CY NAME & ADORESS(It diffrnt
-Office of Naval Research
-Information Systems
-Arlington, VA 22217
-16.
-
-12.
-
-REPORT DATE
-
-Auguet 1985
-from. Controind Office)
-
-12.
-
-"110116tER OF PAGES
-
-IS.
-
-SIECURITY CLASS.
-
-fr Ohio*rpet)
-
-Ucasfe
-162. DEk
-
-SSIFICATION/OOWNGRAOING
-
-DISTRIBUTION STATIEMENT lot this Rh~epr)
-
-Distribution is Unlimited*
-
-17.
-
-DIST RISUTION STATEMENT (of If.
-
-ab.1re.enmted
-mIn
-
-31..if
-Bloc
-
-EfWmiten 600 Roed)
-
-.
-
-1S. SUPPLEMENTARY MOTES
-
-None
-IS.
-
-KIEY WORD0S (Conine.
-
-old* Iffnecosoory mid ld"uI
-
-an e...,..
-
-by filckbe
-
-SCHEME,
-LISP
-Functional Programming
-Computer Languages
-20.
-
-ABSTRACT (CmiIOMmi mi ,.0ar6e
-
-de
-
-Ineaomdimilrb
-
-el.ua
-
-Data and procedures and the values they amass,
-Higher order functions to combine and mix and match,
-* Objects with their local state, the message they pass,
-A property, a package, the control point for a catchIn the Lambda Order they are all first class.
-One thing to name them all, One thing to define them,
-One thing to place them in enviorments and bind them,
-In the Lambda Order they are all first class.
-DD I O.j7 1473
-
-EDITION oF
-
-Nov Is OUSOLATE!
-
-S/N 6611
-O2~0I~
-
-UNCLASSIFIED
-SCURITY CLASSIFICATION OF TNIS PAGE (1,,.
-on
-
-Intmt
-
-Ze.
-
-%
-
-Wr
-
-P
-
-F
-
-INSTITUTE OF TECHNOLOGY
-MASSACHUSETTS
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
 ARTIFICIAL INTELLIGENCE LABORATORY
+
+AI Memo No. 848
 August 1985
 
-Al Memo No. 848
+# The Revised Revised Report on Scheme
 
-The Revised Revised Report on Scheme
-or
-An UnCommon
+## or An UnCommon Lisp
 
--
+## by
 
-Lisp
-
-by
--------- ---
-
-Hal Abelson
-
-Chris Haynes
-
-Norman Adams
-David Bartley
-Gary Brooks
-William Clinger [editor]
-Dan Friedman
-Robert Halstead
-
-Eugene Kohibecker
-Don Oxley
-Kent Pitman
-Jonathan Rees
-Bill Rozas
-Gerald Jay Sussnan
-
-Chris Hanson
-
-Mitchell Wand___________
-
-----------..-
-
-U
+|===
+|Hal Abelson                     |Chris Haynes
+|Norman Adams                    |Eugene Kohibecker
+|David Bartley                   |Don Oxley
+|Gary Brooks                     |Kent Pitman
+|William Clinger [editor]        |Jonathan Rees
+|Dan Friedman                    |Bill Rozas
+|Robert Halstead                 |Gerald Jay Sussnan
+|Chris Hanson                    |Mitchell Wand
+|===
 
 Keywords: SCHEME, LISP, functional programmng, computer languages.
-safe
 
-Abstract
-Data and procedures and the values they amass,
-Higher-orderfunctions to combine "nd miz and match,
-Objects with their local state, the messages they pass,
-A property, a package, the control point for a catchIn the Lambda Order they are all first-class.
-One Thing to name them all, One Thing to define them.
-One Thing to place them in envirounente and bind them,
+## Abstract
+
+Data and procedures and the values they amass, +
+Higher-order functions to combine and mix and match, +
+Objects with their local state, the messages they pass, +
+A property, a package, the control point for a catch --
+
+In the Lambda Order they are all first-class. +
+One Thing to name them all, One Thing to define them. +
+One Thing to place them in envirounente and bind them, +
 In the Lambda Order they are all first-class.
-This report describes researach done at the Artificial Intelligence Laboratory
-of the Massachusetts Institute of Technology and the Computer Science Department of Indiana University. Support for the MIT research is provided in
-part by the Advanced Research Projects Agency of the Department of Defense
-under Office of Naval Research contract NO0014-80-C-0505. Support for the
-Indiana University research is provided by NSF Grants NCS 83-0467 and
-NCS 83-03325. This report is published at Indiana University as Computer
-Science Department Technical Report 174, June 1985.
 
-2
 
-The Revised Revised Report on Scheme
+This report describes researach done at the Artificial Intelligence
+Laboratory of the Massachusetts Institute of Technology and the
+Computer Science Department of Indiana University. Support for the MIT
+research is provided in part by the Advanced Research Projects Agency
+of the Department of Defense under Office of Naval Research contract
+NO0014-80-C-0505. Support for the Indiana University research is
+provided by NSF Grants NCS 83-0467 and NCS 83-03325. This report is
+published at Indiana University as Computer Science Department
+Technical Report 174, June 1985.
 
-Table of Contents
+## Table of Contents
 
 Acknowledgements 3
+
 Part I: Introduction to Scheme
-1.0
-1.1
-1.2
 
-4
-
-Brief history of Scheme 4
-Syntax of Scheme 5
-Semantics of Scheme 7
-
-L
+* I.0 4 Brief history of Scheme
+* I.1 Syntax of Scheme
+* I.2 Semantics of Scheme
 
 Part II: A catalog of Scheme 9
 
-Notational conventions; V
-I11
+* II.0 Notational conventions
+* II.1 Special forms
+* II.2 Booleans
+* II.3 Equivalence predicates
+* II.4 Pairs and lists
+* II.5 Symbols
+* II.6 Numbers
+* II.7 Characters
+* II.8 Strings
+* II.9 Vectors
+* II.10 The object table
+* II.11 Procedures
+* II.12 Ports
+* II.13 Input
+* II.14 Output
 
-12
-3
-.4
-.5
+Bibliography and References
 
-,-
+Index
 
-Special forms' 441Booleans; 22
-Equivalence predicates; '44 'aPairs and lists 26
-Symbols, 3&--
+## Acknowledgements
 
--
+This report is primarily the work of a group of people who met at
+Brandeis University for two days in October 1984. Participating in
+that workshop were Hal Abelson, Norman Adams, David Bartley, Gary
+Brooks, William Clinger, Dan Friedman, Robert Halstead, Chris Hanson,
+Chris Haynes, Eugene Kohlbecker, Don Oxley, Jonathan Rees, Bill Rozas,
+Gerald Sussman, and Mitchell Wand. Kent Pitman made valuable
+contributions to the agenda for the workshop but was unable to attend
+the sessions.
 
-11.6 Numbers , 36&.i7 Character., 49--.8
-M9
+We would like to thank the following people for their comments and
+criticisms in the months following the workshop: George Carrette, Kent
+Dybvig, Andy Freeman, Yekta Gursel, Paul Hudak, Chris Lindblad, John
+Ramsdell, and Guy Steele Jr.
 
-'
-Strings; St.5
+We thank Carol Fessenden, Dan Friedman, and Chris Haynes for
+permission to use text from the Scheme 311 Version 4 reference manual.
+We thank Gerry Sussman for drafting the chapter on numbers, Chris
+Hanson for drafting the chapters on characters and strings, and Gary
+Brooks and William Clinger for drafting the chapters on input and
+output. We gladly acknowledge the influence of manuals for MIT Scheme,
+T, Scheme 84, and Common Lisp.
 
-Vetors,'
+We also thank Betty Dexter for the extreme effort she put into setting
+this report in (Y)TeX, and Don Knuth for designing the program that
+caused her troubles.
 
-'4
+We intend this report to belong to the entire Scheme community, and so
+we grant permission to copy it in whole or in part without fee. In
+particular, we encourage implementors of Scheme to use this report as
+a starting point for manuals and other documentation, modifying it as
+necessary.
 
-_-
+_Editor's note:_ This report records the unanimous decisions made
+through a remarkable spirit of compromise at Brandeis, together with
+the fruits of subsequent committee work and discussions made possible
+by various computer networks. I have tried to edit these into a
+coherent document while remaining faithful to the workshop's decisions
+and the community's consensus. I apologize for any cases in which I
+have misinterpreted the authors or misjudged the consensus.
 
-I1l0 The object tables
-11.11 Procedures, 6*-,
-
-11.12 Ports,, 6t*"1.13
-__Yj14
-
-Input; 63"
-Output, 66-
-
-- -
-
-Bibliography and Referenc.67
-Index 70
-
-'
-
-'
-
-'
-
-'...,.
-
-. ,'. r.
-
-"..c*:*.'.'S
-
-*%• ,.,
-
--.
-
--,.",.b
-
-,S
-
-,
-
-I
-
-.
-
-. ."..
-
-;
-
-.
-
-,--.
-
-.
-
-.,",, •
-
-. .-
-
-,'
-.*.*
-
-.*
-
-.
-
-%" t " %",
-. ,-..-,
-
-" ."%* %
-
-'.,.
-%..
-
--'
-
-The Revised Revised Report on Scheme
-
-S
-
-Acknowledgements
-This report is primarily the work of a group of people who met at Brandeis University for two days in October 1984. Participating in that workshop
-were Hal Abelson, Norman Adams, David Bartley, Gary Brooks, William
-Clinger, Dan Friedman, Robert Halstead, Chris Hanson, Chris Haynes, Eugene Kohlbecker, Don Oxley, Jonathan Rees, Bill Rozas, Gerald Sussman,
-and Mitchell Wand. Kent Pitman made valuable contributions to the agenda
-for the workshop but was unable to attend the sessions.
-We would like to thank the following people for their comments and criticisms
-in the months following the workshop: George Carrette, Kent Dybvig, Andy
-Freeman, Yekta Gursel, Paul Hudak, Chris Lindblad, John Ramsdell, and
-Guy Steele Jr.
-We thank Carol Fessenden, Dan Friedman, and Chris Haynes for permission
-to use text from the Scheme 311 Version 4 reference manual. We thank Gerry
-Sussman for drafting the chapter on numbers, Chris Hanson for drafting the
-chapters on characters and strings, and Gary Brooks and William Clinger
-for drafting the chapters on input and output. We gladly acknowledge the
-influence of manuals for MIT Scheme, T, Scheme 84, and Common Lisp.
-
-S
-
-We also thank Betty Dexter for the extreme effort she put into setting this
-report in fTTX, and Don Knuth for designing the program that caused her
-troubles.
-We intend this report to belong to the entire Scheme community, and so we
-grant permission to copy it in whole or in part without fee. In particular, we
-encourage implementors of Scheme to use this report as a starting point for
-manuals and other documentation, modifying it as necessary.
-Editor's note: This report records the unanimous decisions made through a
-remarkable spirit of compromise at Brandeis, together with the fruits of subsequent committee work and discussions made possible by various computer
-networks. I have tried to edit these into a coherent document while remaining
-faithful to the workshop's decisions and the community's consensus. I apologize for any cases in which I have misinterpreted the authors or misjudged
-the consensus.
 William Clinger
 
-16
+# Part I: Introduction to Scheme
 
-If"0
+## I.0 Brief history of Scheme
 
-:.,,,.
-...,.;.
-. ,-...,".'.....,. . ..,..,.. . , . .-.'.;.-% .,..-,. . ,...,;,.- ,-.-.-.-.,. ..,:.,' .L . -.- .,.'.,% - ;
-'
--2.:
-. .:.,-.'
-I ,,i, ;.,S": -;,=,,,
-"
-"
-. .,,.,..., .
-""''
-:. ;," ' " ." . " '
+Scheme is a statically scoped and properly tail-recursive dialect of
+the Lisp programming language invented by Guy Lewis Steele Jr and
+Gerald Jay Sunman. It was designed to have an exceptionally clear and
+simple semantics and very few different methods of expression
+formation.
 
-4
+The first description of Scheme was written in 1975 [28]. A Revised
+Report [24] appeared in 1978, which described the evolution of the
+language as its MIT implementation was upgraded to support an
+innovative compiler [21]. Three distinct projects began in 1981 and
+1982 to use variants of Scheme for courses at MIT, Yale, and Indiana
+University [11, 14, 4]. An introductory computer science textbook
+using Scheme was published in 1984 [1].
 
-The Revised Revised Report on Scheme
+As might be expected of a language used-primarily for education and
+research, Scheme has always evolved rapidly. This was no problem when
+Scheme was used only within MIT, but as Scheme became more widespread
+local subdialects began to diverge until students and researchers
+occasionally found it difficult to understand code written at other
+sites. Fifteen representatives of the major implementations of Scheme
+therefore met in October 1984 to work toward a better and more widely
+accepted standard for Scheme. This paper reports their unanimous
+recommendations augmented by committee work in areas of arithmetic,
+characters, strings, and input/output.
 
-Part I: Introduction to Scheme
-Brief history of Scheme
+Scheme shares with Common Lisp [23] the goal of a core language common
+to several implementations. Scheme differs from Common Lisp in its
+emphasis upon simplicity and function over compatibility with older
+dialects of Lisp.
 
-I.
+## I.1 Syntax
 
-Scheme is a statically scoped and properly tail-recursive dialect of the
-Lisp programming language invented by Guy Lewis Steele Jr and Gerald Jay
-Sunman. It was designed to have an exceptionally clear and simple semantics
-and very few different methods of expression formation.
-The first description of Scheme was written in 1975 [28]. A Revised Report
-[24] appeared in 1978, which described the evolution of the language as its
-MIT implementation was upgraded to support an innovative compiler [21].
-Three distinct projects began in 1981 and 1982 to use variants of Scheme for
-courses at MIT, Yale, and Indiana University [11, 14, 4]. An introductory
-computer science textbook using Scheme was published in 1984 [1].
-As might be expected of a language used-primarily for education and research,
-Scheme has always evolved rapidly. This was no problem when Scheme was
-used only within MIT, but as Scheme became more widespread local subdialects began to diverge until students and researchers occasionally found it
-difficult to understand code written at other sites. Fifteen representatives of
-the major implementations of Scheme therefore met in October 1984 to work
-toward a better and more widely accepted standard for Scheme. This paper
-reports their unanimous recommendations augmented by committee work in
-areas of arithmetic, characters, strings, and input/output.
+Formal definitions of the lexical and context-free syntaxes of Scheme
+will be included in a separate report.
 
-athe
+### Identifiers
 
-Scheme shares with Common Lisp [23] the goal of a core language common to
-several implementations. Scheme differs from Common Lisp in its emphasis
-upon simplicity and function over compatibility with older dialects of Lisp.
+Most identifiers allowed by other programming languages are also
+acceptable to Scheme. The precise rules for forming identifiers vary
+among implementations of Scheme, but in all implementations a sequence
+of characters that contains no special characters and begins with a
+character that cannot begin a number is an identifier. There may be
+other identifiers as well, and in particular the following are
+identifiers:
 
-.1,
-o,.
+    + - 1+ -1+
 
-VV.
+It is guaranteed that the following characters cannot begin a number,
+so identifiers other than the four listed above should begin with one
+of:
 
-b
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    ! $ % & * / : < = > ? ~
 
-e
-
-&
-
-'
-
-..
-
-.
-
-..
-
-.
-
-%.
-
-Tke Revised Revised Report on Scheme
-
-S
-
-.I Syntax
-Formal definitions of the lexical and context-free syntaxes of Scheme will
-be included ina separate report.
-Identifiers
-Most identifiers allowed by other programming languages are also acceptable to Scheme. The precise rules for forming identifiers vary among
-implementations of Scheme, but in all implementations a sequence of characters that contains no special characters and begins with a character that
-cannot begin a number is an identifier. There may be other identifiers as well,
-and in particular the following are identifiers:
-+ - 1+ -1+
-It is guaranteed that the following characters cannot begin a number, so
-identifiers other than the four listed above should begin with one of:
-abcdefghijklanopqrstuvvxyz
-ABCDEFGHI JKLMIOPQRSTUVVXYZ
-I$%&*/: <->?-"
 Subsequent characters of the identifier should be drawn from:
-abcdefghijklanopqr.tuvwxyz
-ABCDEFGHI JKLMNOPqISTUVWXYZ
-0123456789
 
-I *$1k*/: <->?."_. "
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    0 1 2 3 4 5 6 7 8 9
+    ! $ % & * / : < = > ? ^ _ . ~
 
-•
+The case in which the letters of an identifier are typed is
+immaterial. For example, Foo is the same identifier as FOO.
 
-The cae in which the letters of an identifier are typed is immaterial. For
-example, Foo is the same identifier as FOO.
-The following characters are special, and should never be used in an identifier:
+The following characters are special, and should never be used in an
+identifier:
 
-) () [){ •; ~,k
-Scheme deliberately does not specify whether the following characters can be
-used in identifiers:
-"* . *
-Raiooale: Some implementations might want to use backslash (\) and vertical
-bar ( I) as in Common Lisp. As for the others there are two schools of thought.
-One school argues that disallowing special characters in identifiers allows the
-computer to catch more typing errors. The other school agrees only for special
-characters that come in pairs, on the grounds that errors involving only the
-unpaired special characters are easier to see.
+    ) ( ] [ } { " ; blank
 
--.
+Scheme deliberately does not specify whether the following characters
+can be used in identifiers:
 
-.
+    # ' ` , @ \ |
 
-.d~k
-,,..*/
-d
+Rationale: Some implementations might want to use backslash (\) and
+vertical bar (|) as in Common Lisp. As for the others there are two
+schools of thought. One school argues that disallowing special
+characters in identifiers allows the computer to catch more typing
+errors. The other school agrees only for special characters that come
+in pairs, on the grounds that errors involving only the unpaired
+special characters are easier to see.
 
-%,,.,.a'm
+### Numbers
 
-%.
+For a description of the notations used for numbers, see section II.6.
 
-******5*J***~dm~~mmd
+### Comments
 
-**-*..t
-m~a .. a*-*-.
-.-
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-5S-
-
-*The
-
-Revised Revised Report on Scheme
-
-6
-
-Numbers
-For a description of the notations used for numbers, see section 11.6.
-
-r
-
-Comments
 A semicolon indicates the start of a comment. The comment continues to
-the end of the line on which the semicolon appears. Comments are invisible
-to Scheme, but the end of the line is visible as whitespace. This prevents a
-comment from appearing in the middle of an identifier or number.
-Other notations
-Left and right parentheses are used for grouping and to notate lists as
-described in section 11.4. Left and right square brackets and curly braces are
-not used in Scheme right now but are reserved for unspecified future uses.
-The quote V) and backquote (C) characters are used to indicate constant or
-almost-constant data as described in section 11.1. The comma is used together
-with the backquote, and the atsign (a is used together with the comma.
-The doublequote character is used to notate strings as described in section
+the end of the line on which the semicolon appears. Comments are
+invisible to Scheme, but the end of the line is visible as whitespace.
+This prevents a comment from appearing in the middle of an identifier
+or number.
 
-*
+### Other notations
 
-The sharp sign (#) is used for a variety of purposes depending on the character that follows it. A sharp sign followed by a left parenthesis signals the
-beginning of a vector, as described in section 11.9. A sharp sign followed by an
-exclamation point is used to notate one of the special values #1I true, #1I faelse,
-and #I null. A sharp sign followed by a backslash is used to notate characters as described in section 11.7. A sharp sign followed by any of a number of
-letters is used in the notation for numbers as described in section 11.6
-Context free grammar for Scheme
-The following grammar is ambiguous because a <special f orm> looks like
-a <procedure call>. Some implementations resolve the ambiguity by reserving the identifiers that serve as keywords of special forms, while other
-implementations allow the keyword meaning of an identifier to be shadowed
-by lexical bindings.
+Left and right parentheses are used for grouping and to notate lists
+as described in section 11.4. Left and right square brackets and curly
+braces are not used in Scheme right now but are reserved for
+unspecified future uses.
 
-.~.%*.
+The quote (') and backquote (`) characters are used to indicate
+constant or almost-constant data as described in section II.1. The
+comma is used together with the backquote, and the atsign (@) is used
+together with the comma.
 
-.
+The doublequote character is used to notate strings as described in
+section II.8.
 
-.
+The sharp sign (\#) is used for a variety of purposes depending on the
+character that follows it. A sharp sign followed by a left parenthesis
+signals the beginning of a vector, as described in section II.9. A
+sharp sign followed by an exclamation point is used to notate one of
+the special values `#!true`, `\#!false`, and `#!null`. A sharp sign
+followed by a backslash is used to notate characters as described in
+section II.7. A sharp sign followed by any of a number of letters is
+used in the notation for numbers as described in section II.6.
 
-.
+### Context free grammar for Scheme
 
-.
+The following grammar is ambiguous because a `<special form>` looks
+like a `<procedure call>`. Some implementations resolve the ambiguity
+by reserving the identifiers that serve as keywords of special forms,
+while other implementations allow the keyword meaning of an identifier
+to be shadowed by lexical bindings.
 
-.
-
-.
-
--
-
-The Revised Revised Report on Scheme
+-----
 
 <expression> ::- <constant>
 
