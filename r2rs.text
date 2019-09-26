@@ -1,71 +1,21 @@
-UNCLSSIFIED
+# AI Memo 848: The Revised Revised Report on Scheme or An UnCommon Lisp
 
-LISP(U) MASSACHUSETTS INST OF TECH CAMBRIDGE ARTIFICIAL
-INTELLIGENCE LAB H ABELSON ET AL. AUG 85 AI-M-8S
-N9848--55FO92
+MIT Artificial Intelligence Laboratory
 
-N
+1985-09-24
 
-111.0
-Hill
-
-1.25
-
-Nm
-
-We
-
-W
-
-All
-
-IA
-
-116
-
-MICROCOPY RESOLUTION TEST CHART
-NATIONAL WillA OFSTANDARDS-1963-A
-
-*1w
-
-z:.
-
-I
-
-.-
-
-AI Memo 848
-
-The Revised
-Revised Report
-on Scheme or
-An UnCommon
-,Lisp
-
-•
-
-DTI
-ELECE
 Data and procedures and the values they amass,
-
-.
-
-Higher-orderfunctions to combine and mix and match,
+Higher-order functions to combine and mix and match,
 Objects with their local state, the messages they pass,
-A property, a package, the control point for a catch In the Lambda Order they are all first-class.
-
-*
+A property, a package, the control point for a catch --
+In the Lambda Order they are all first-class.
 
 One Thing to name them all, One Thing to define them,
 One Thing to place them in environments and bind them,
 In the Lambda Order they are all first-class.
 
-MIT Artificial Intelligence Laboratory
-24 0
-mth!j;y bc-a~:3
-dUIMn
-Thi:for Public r'eloazo and sal", i's
-distibution isunimited
+
+
 
 5
 .85
