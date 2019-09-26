@@ -1,31 +1,9 @@
-# AI Memo 848: The Revised Revised Report on Scheme or An UnCommon Lisp
-
-MIT Artificial Intelligence Laboratory
-
-August 1985
-
-Data and procedures and the values they amass,
-Higher-order functions to combine and mix and match,
-Objects with their local state, the messages they pass,
-A property, a package, the control point for a catch --
-In the Lambda Order they are all first-class.
-
-One Thing to name them all, One Thing to define them,
-One Thing to place them in environments and bind them,
-In the Lambda Order they are all first-class.
-
-
-
-
-MASSACHUSETTS INSTITUTE OF TECHNOLOGY
-ARTIFICIAL INTELLIGENCE LABORATORY
-
-AI Memo No. 848
-August 1985
-
 # The Revised Revised Report on Scheme
 
 ## or An UnCommon Lisp
+
+Massachusetts Institute of Technology / Artificial Intelligence Laboratory +
+AI Memo No. 848 / August 1985
 
 ## by
 
@@ -40,20 +18,18 @@ August 1985
 |Chris Hanson                    |Mitchell Wand
 |===
 
-Keywords: SCHEME, LISP, functional programmng, computer languages.
-
 ## Abstract
 
-Data and procedures and the values they amass, +
-Higher-order functions to combine and mix and match, +
-Objects with their local state, the messages they pass, +
-A property, a package, the control point for a catch --
+_Data and procedures and the values they amass,_ +
+_Higher-order functions to combine and mix and match,_ +
+_Objects with their local state, the messages they pass,_ +
+_A property, a package, the control point for a catch_--- +
+_In the Lambda Order they are all first-class._ +
+_One Thing to name them all, One Thing to define them._ +
+_One Thing to place them in environments and bind them,_ +
+_In the Lambda Order they are all first-class._
 
-In the Lambda Order they are all first-class. +
-One Thing to name them all, One Thing to define them. +
-One Thing to place them in environments and bind them, +
-In the Lambda Order they are all first-class.
-
+---
 
 This report describes researach done at the Artificial Intelligence
 Laboratory of the Massachusetts Institute of Technology and the
@@ -65,9 +41,13 @@ provided by NSF Grants NCS 83-0467 and NCS 83-03325. This report is
 published at Indiana University as Computer Science Department
 Technical Report 174, June 1985.
 
+Keywords: SCHEME, LISP, functional programmng, computer languages.
+
+---
+
 ## Table of Contents
 
-Acknowledgements 3
+Acknowledgements
 
 Part I: Introduction to Scheme
 
@@ -75,7 +55,7 @@ Part I: Introduction to Scheme
 * I.1 Syntax of Scheme
 * I.2 Semantics of Scheme
 
-Part II: A catalog of Scheme 9
+Part II: A catalog of Scheme
 
 * II.0 Notational conventions
 * II.1 Special forms
