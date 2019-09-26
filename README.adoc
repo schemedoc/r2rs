@@ -51,7 +51,7 @@ A property, a package, the control point for a catch --
 
 In the Lambda Order they are all first-class. +
 One Thing to name them all, One Thing to define them. +
-One Thing to place them in envirounente and bind them, +
+One Thing to place them in environments and bind them, +
 In the Lambda Order they are all first-class.
 
 
