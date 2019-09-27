@@ -488,55 +488,39 @@ locations, and expr will then be evaluated in the extended
 environment. The result of expr will be returned as the result of the
 procedure call.
 
+    (lambda (x) (+ x x))            --> #<PROCEDURE>
+    ((lambda (x) (+ x x)) 4)        --> 8
+    (define reverse-subtract
+      (lambda (x y) (- y x)))       --> unspecified
+    (reverse-subtract 7 10)         --> 3
+    (define foo
+      (let ((x 4))
+        (lambda (y) (+ x y))))      --> unspecified
+    (foo 6)                         --> 10
+
+(*lambda* (_var1_ _..._) _expr1_ _expr2_ _..._) [essential special form]
+
+Equivalent to `(lambda (var1 ...) (begin expr1 expr2 ...))`.
+
+(*lambda* _var_ _expr1_ _expr2_ _..._) [essential special form]
+
+Returns a procedure that when later called with some arguments will
+bind var to a fresh location, convert the sequence of actual arguments
+into a list, and store that list in the binding of var.
+
+    ((lambda x x) 3 4 5 6)          --> (3 4 5 6)
+
+One last variation on the formal argument list provides for a
+so-called "rest argument. If a space/dot/space sequence precedes the
+last argument in the formal argument list, then the value stored in
+the binding of the last formal argument will be a list of the actual
+arguments left over after all the other actual arguments have been
+matched up against the formal arguments.
+
+    ((lambda (x y . z) z) 3 4 5 6)  --> (5 6)
+
 -----
 
-(lambda x) (+ x x))
--- > #<PROCEDURE>
--- > 8
-((lambda x) (+ x x)) 4)
-(define reverse-subtract
-(lambda (x y) (- y x)))
-(reverse-subtract 7 10)
-(define foo
-
--- >
--- >
-
-unspecified
-3
-
--- >
-
-unspecified
-10
-
-C:
-
-(let (x 4))
-(lambda (y) (+ x y))))
-(foo 6)
-
---
-
-(lambda (earl ... ) ezpri espro ... )
-essential special form
-Equivalent to (lambda (earl ... ) (begin expri exprf ... )).
-
-L.
-
-(lambda ear ezpri ezpr* ... )
-essential special form
-Returns a procedure that when later called with some arguments will
-bind var to a fresh location, convert the sequence of actual arguments into a
-list, and store that list in the binding of ear.
-((lambda X x) 3 4 6 6)
--(4 5 6)
-One last variation on the formal argument list provides for a so-called "rest
-argument. If a space/dot/space sequence precedes the last argument in the
-formal argument list, then the value stored in the binding of the last formal
-argument will be a list of the actual arguments left over after all the other
-actual arguments have been matched up against the formal arguments.
-((labda (xy . a) z) 3 46) --> (5 6)
 (ifcondition conseqmt altersaive)
 essential special form
 (ifcondition consequent)
