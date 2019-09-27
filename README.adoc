@@ -31,7 +31,7 @@ _In the Lambda Order they are all first-class._
 
 ---
 
-This report describes researach done at the Artificial Intelligence
+This report describes research done at the Artificial Intelligence
 Laboratory of the Massachusetts Institute of Technology and the
 Computer Science Department of Indiana University. Support for the MIT
 research is provided in part by the Advanced Research Projects Agency
@@ -400,192 +400,96 @@ names a variable is said to be _bound_ to that location. The set of
 all such bindings in effect at some point in a program is known as the
 _environment_ in effect at that point.
 
+Certain special forms are used to allocate storage for new variables
+and to bind identifiers to those new variables. The most fundamental
+of these binding constructs is the lambda special form, because all
+other binding constructs can be explained in terms of lambda
+expressions. The other binding constructs are the let, *let*, letrec,
+internal definition (see define), rec, namedlambda, and do special
+forms.
+
+Like Algol or Pascal, and unlike most other dialects of Lisp except
+for Common Lisp, Scheme is a statically scoped language with block
+structure. To each place where an identifier is bound in a program
+there corresponds a region of the program within which the binding is
+effective. The region varies according to the binding construct that
+establishes the binding; if the binding is established by a lambda
+expression, for example, then the region is the entire lambda
+expression. Every use of an identifier in a variable reference or
+assignment refers to the binding of the identifier that established
+the innermost of the regions containing the use. If there is no
+binding of the identifier whose region contains the use, then the use
+refers to the binding for the identifier that was in effect when
+Scheme started up, if any; if there is no binding for the identifier,
+it is said to be unbound.
+
+_variable_ [essential special form]
+
+An expression consisting of an identifier that is not the keyword of a
+apecial form is a variable reference. The value obtained for the
+variable reference is the value stored in the location to which
+variable is bound. It is an error to reference an unbound _variable_.
+
+(_operator_ _operand1_ _..._) [essential special form]
+
+A list whose first element is not the keyword of a special form
+indicates a procedure call. The operator and operand expressions are
+evaluated and the resulting procedure is passed the resulting
+arguments. In contrast to other dialects of Lisp the order of
+evaluation is not specified, and the operator expression and the
+operand expressions are always evaluated with the same evaluation
+rules.
+
+    (+ 3 4)                  --> 7
+    ((if #!false + *) 3 4)   --> 12
+
+
+(*quote* _datum_) [essential special form] +
+'_datum_ [essential special form]
+
+Evaluates to datum. This notation is used to include literal constants
+in Scheme code.
+
+    (quote a)        --> a
+    (quote #(a b c)) --> #(a b c)
+    (quote (+ 1 2))  --> (+ 1 2)
+
+`(quote datum)` may be abbreviated as `'datum`. The two notations are
+equivalent in all respects.
+
+    'a         --> a
+    '#(a b c)  --> #(a b c)
+    '(+ 1 2)   --> (+ 1 2)
+    '(quote a) --> (quote a)
+    ''a        --> (quote a)
+
+Numeric constants, string constants, character constants, vector
+constants, and the constants # !true, #false, and #!null need not be
+quoted.
+
+    '"abc"  --> "abc"
+    "abc" --> "abc"
+    '145932 --> 145932
+    145932 --> 145932
+    '#!true --> #!true
+    #!true --> #!true
+
+(*lambda* (_var1_ _..._) _expr_) [essential special form]
+
+Each var must be an identifier. The lambda expression evaluates to a
+procedure with formal argument list `(var1 ...)` and procedure body
+_expr_. The environment in effect when the lambda expression was
+evaluated is remembered as part of the procedure. When the procedure
+is later called with some actual arguments, the environment in which
+the lambda expression was evaluated will be extended by binding the
+identifiers in the formal argument list to fresh locations, the
+corresponding actual argument values will be stored in those
+locations, and expr will then be evaluated in the extended
+environment. The result of expr will be returned as the result of the
+procedure call.
+
 -----
 
-Certain special forms are used to allocate storage for new variables and to
-bind identifiers to those new variables. The most fundamental of these binding
-constructs is the lambda special form, because all other binding constructs can
-be explained in terms of lambda expressions. The other binding constructs
-are the let.*let*. letrec, internal definition (see define), rec. namedlambda, and do special form.
-Like Algol or Pascal, and unlike most other dialects of Lisp except for Common Lisp, Scheme is a statically scoped language with block structure. To
-each place where an identifier is bound in a program there corresponds a region of the program within which the binding is effective. The region varies
-according to the binding construct that establishes the binding; if the binding
-is established by a lambda expression, for example, then the region is the
-entire lambda expression. Every use of an identifier in a variable reference or
-assignment refers to the binding of the identifier that established the innermost of the regions containing the use. If there is no binding of the identifier
-whose region contains the use, then the use refers to the binding for the identifier that was in effect when Scheme started up, if any; if there is no binding
-for the identifier, it is said to be unbound.
-variable
-essential special form
-An expression consisting of an identifier that is not the keyword of a apecial form is a variable reference. The value obtained for the variable reference
-is the value stored in the location to which variable is bound. It is an error
-to reference an unbound variable.
-
-e.:
-
-NX
-
-7- -...
-
-7a-
-
--
-
-:V........
-
-12
-
-The Revised Revised Report on Scheme
-
-essential special form
-A list whose first element is not the keyword of a special form indicates a
-procedure call. The operator and operand expressions are evaluated and the
-resulting procedure is passed the resulting arguments. In contrast to other
-dialects of Lisp the order of evaluation is not specified, and the operator
-expression and the operand expressions are always evaluated with the same
-evaluation rules.
-(opetov operandl ... )
-
-(+ 3 4)
-
--- >
-
-7
-
-((if Cfalse + *) 3 4)
-
--- >
-
-12
-
-essential special form
-(quote datum)
-essential special form
-'datum
-Evaluates to datum. This notation is used to include literal constants in
-Scheme code.
-(quote a)
-
---
-
-a
-
-(quote #(a b c))
-(quote (+ 1 2))
-
--- >
--- >
-
-#(a b )
-
-(.12)
-
-(quote datum) may be abbreviated as 'datum. The two notations are equivalent in all respects.
-'(ab€)
-
-'(+ 12)
-
--- >
-
-#(ab c)
-
-'(quote a)
-
--- >
-
-"a
-
--- >
-
-(quote a)
-(quote a)
-
-->(+ 12)
-
-Numeric constants, string constants, character constants, vector constants,
-and the constants # Itrue, #ffalse, and #Inull need not be quoted.
-abcH
-
-'"abc*
-
---
-
-Nabc"
-
---
-
-*abce
-145932
-145932
-
-'145932
-
--- >
-
-145932
-
--- >
-
-S'CItue
-
--- >
-
-#Itrue
-
--- >
-
-i#true
-Citrue
-
-essential special form
-(lambda (warl ... ) expr)
-Each var must be an identifier. The lambda expression evaluates to a procedure with formal argument list (varl ... ) and procedure body expr. The
-environment in effect when the lambda expression was evaluated is remembered as part of the procedure. When the procedure is later called with some
-
-~i
-
-'
-*- -. -"
-
-. &' -.
-
-<
-. -"
-
--
-
-.
-
-- .
-
-, ,
-
-. . -"-";"""-',""-"- - ,,,,,"r"-
-
-,," ,
-
-"-'
-
-;,, ."-"'
-
-%,*.....
-
-,' . ." ,,. ', ," , ,.-"
-
-'.
-
-,' .
-
-"
-
-The Revised Revised Report on Scheme
-
-is
-
-actual arguments, the environment in which the lambda expression was evaluated will be extended by binding the identifiers in the formal argument list
-to fresh locations, the corresponding actual argument values will be stored in
-those locations, and ezpr will then be evaluated in the extended environment.
-The result of ezpr will be returned as the result of the procedure call.
 (lambda x) (+ x x))
 -- > #<PROCEDURE>
 -- > 8
