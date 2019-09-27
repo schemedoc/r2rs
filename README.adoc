@@ -51,7 +51,7 @@ Acknowledgements
 
 Part I: Introduction to Scheme
 
-* I.0 4 Brief history of Scheme
+* I.0 Brief history of Scheme
 * I.1 Syntax of Scheme
 * I.2 Semantics of Scheme
 
