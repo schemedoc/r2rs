@@ -531,7 +531,7 @@ evaluated and its value isreturned. Ifno alternstivee is specified, then the if
 expression isevaluated only for its effect, and the result of the expression is
 unspecified.
 (if (>? 3 2) 'yes 'no)
--- > yes
+--> yes
 no
 -- )
 (if 0? 2 3) 'yes 'zo)
@@ -660,7 +660,7 @@ a guard that always evaluates true.
 ((<? 3 3) 'less)
 (else 'equal))
 
--- >
+-->
 
 equal
 
@@ -721,13 +721,13 @@ unspecified.
 
 composite
 
--- >
+-->
 
 ((b) 'b))
 
 unspecified
 
--- >
+-->
 
 The special keyword else may be used as a selector to obtain the effect of a
 selector that always matches.
@@ -736,7 +736,7 @@ selector that always matches.
 (else 'consonant))
 (and ezprl
 
--- >
+-->
 
 consonant
 special form
@@ -752,10 +752,10 @@ the ezprs from left to right, returning false as soon as one
 false value (see section 11.2). Any remaining expressions are
 If all the expressions evaluate to true values, the value of the
 is returned.
--- >
+-->
 titrue
 (and (-? 2 2) (>? 2 1))
--- >
+-->
 *Ifalse
 (and (-? 2 2) (? 2 1))
 "'> (f g)
@@ -770,18 +770,18 @@ Evaluates the ezprs from left to right, returning the value of the first expr
 that evaluates to a true value (see section 11.2). Any remaining expressions
 are not evaluated. If all expressions evaluate to false values, false is returned.
 #ttrue
--- >
+-->
 2?
 22) (>? 21))
 (or (
--- > #Itrue
+--> #Itrue
 2?
 22 (W? 21))
 (or (
--- >
+-->
 #12alse
 (or #ifalse #Ifalse 0Iialse)
-) (/ 3 0)) -- > (b c)
+) (/ 3 0)) --> (b c)
 (or (memq 'b '(a b
 )
 (let ((varl forml) ...) exprl exprR ...
@@ -792,7 +792,7 @@ Evaluates the forms in the current environment (in some unspecified order), bind
 the ezprs in the extended environment from left to right, returning the value
 of the last one. Each binding of a war has ezprl ezprf ...as its region.
 (leot ((x 2) (y 3))
--- > 6
+--> 6
 (x y))
 
 ',
@@ -879,7 +879,7 @@ The Revised Revised Report on Scheme
 (let ((foo (lambda (z) (
 
 x y z)))
--- >
+-->
 
 (too 4)))
 
@@ -927,7 +927,7 @@ define mutually recursive procedures. See let.
 ~
 
 (+ x y z)))
--- >
+-->
 
 14
 
@@ -967,7 +967,7 @@ v
 #Ifalse
 (even? (-1+ n))))))
 (even? 88))
--- >
+-->
 
 OItrue
 
@@ -1077,13 +1077,13 @@ is
 (define first car)
 (first '(1 2))
 
--- >
+-->
 
 unspecified
 
--- >6
--- >
--- >
+-->6
+-->
+-->
 
 unspecified
 1
@@ -1101,7 +1101,7 @@ example,
 (define foe (lambda (y) (bar x y)))
 (define bar (lambda (a b) (+ (* a b) a)))
 (foe ( x 3)))
--- >
+-->
 45
 Internal definitions can always be converted into an equivalent letrec expression. For example, the let expression in the above example is equivalent
 to
@@ -1132,9 +1132,9 @@ evaluated but ear is not. The result of the set ! expression is unspecified.
 (set! x 4)
 (1+ x)
 
--- >
+-->
 
--- >
+-->
 
 unspecified
 
@@ -1251,7 +1251,7 @@ a
 (do ((x x (cdr x))
 (sun 0 (+ sun (car x))))
 ((null? x) sun)))
--- > 25
+--> 25
 The do special form is essentially the same as the do macro in Common
 Lisp. The main difference is that in Scheme the identifier return is not
 bound; programmers that want to bind return as in Common Lisp must do
@@ -1269,9 +1269,9 @@ then the following expression must evaluate to a list; the opening and closing
 parentheses of the list are then 'stripped away" and the elements of the list
 are inserted in place of the comma/at-sign/expression sequence.
 '(a ,(+ 1 2) ,Q(sap 1+ '(4 5 6)) b)
--- >
+-->
 (a 3 5 6 7 b)
-*(((oo ,(- 10 3)) .e(cdr '(c)) cons)) -- > (((foo 7) cons))
+*(((oo ,(- 10 3)) .e(cdr '(c)) cons)) --> (((foo 7) cons))
 Scheme does not have any standardfacility for defining new special forms.
 Rationale: The ability to define new special forms creates numerous problems.
 All current implementations of Scheme have macro facilities that solve those
@@ -1392,13 +1392,13 @@ evaluating. That is,
 it does not need to be quoted in programs.
 '#Ifalse
 
--- >
+-->
 
 #!false
 
 Ifalse
 
--- >
+-->
 
 U!false
 
@@ -1550,9 +1550,9 @@ a.
 (eq? 'a 'b)
 (eq? '(a) '(a))
 
--- >
+-->
 
--- >
+-->
 
 unspecified
 
@@ -1562,7 +1562,7 @@ unspecified
 (let ((x (read)))
 (eq? (cdr (cons 'b x)) x))
 
--- >
+-->
 
 unspecified
 unspecified
@@ -1570,7 +1570,7 @@ unspecified
 . .,
 ..
 
--- >
+-->
 
 ....
 
@@ -1590,12 +1590,12 @@ unspecified
 
 ".
 
--- >
--- >
+-->
+-->
 
 #lfalse
 
--- >
+-->
 
 #ltrue
 
@@ -1639,8 +1639,8 @@ the -? procedure.
 (eq? 100000 100000)
 (eqv? 100000 100000)
 
--- >
--- >
+-->
+-->
 
 unspecified
 
@@ -1662,29 +1662,29 @@ its arguments are circular data structures.
 '(a) '(a))
 '(a (b) c) '(a (b) c))
 
--- >
+-->
 
 #ttrue
 
--- >
+-->
 
 #Itrue
 
--- >
+-->
 
 "abc" "abc")
 
--- >
+-->
 
 2 2)
 
--- >
+-->
 
 #Itrue
 #Itrue
 #1true
 
--- >
+-->
 
 Oltrue
 
@@ -1775,23 +1775,23 @@ one moment and not the next:
 
 (define x '(a b c))
 
--- >
+-->
 
 (define y x)
 
--- >
+-->
 
 y
 
--- >
+-->
 
 (set-cdr! x 4)
 X
 (eq? x y)
 
--- >
--- >
--- >
+-->
+-->
+-->
 
 unspecified
 unspecified
@@ -1806,7 +1806,7 @@ A pair object, on the other hand, will always be a pair object.
 
 y
 
--- >
+-->
 
 It is often convenient to speak of a homogeneous (proper) list of objects of
 some particular data type, as for example (1 2 3) is a list of integers. To
@@ -1839,20 +1839,20 @@ b))
 
 Ifalse.
 
--- >
+-->
 
 Citrue
 
--- >
+-->
 
 Citrue
 
--- >
+-->
 
 #alse
 #ifalse
 
--- >
+-->
 
 (cons oel obg)
 
@@ -1885,23 +1885,23 @@ o.-.
 (cons "a" '(b c))
 (cons 'aS)
 
--- >
--- >
+-->
+-->
 
 (a)
 ((a) b c d)
 
--- >
+-->
 
 ("a" b )
 
--- >
+-->
 
 (a .3)
 
 (cons '(a b) 'c)
 
--- >
+-->
 
 ((a b)
 
@@ -1966,7 +1966,7 @@ essential procedure
 Returns the contents of the car field of pair. pair must be a pair. Note
 that it is an error to take the car of the empty list.
 (car '(abc))
--- > a
+--> a
 (car '((a) bcd))
 (car '(1 .2))
 (car '0)
@@ -1974,11 +1974,11 @@ that it is an error to take the car of the empty list.
 (a)
 1
 
--- >
+-->
 
 error
 
--- >
+-->
 
 (cdr pair)
 essential procedure
@@ -1994,13 +1994,13 @@ pair oj)
 
 (cdr '((a) b c d))
 
--- >
+-->
 
 (cdr '(1. 2))
 (cdr '0)
 
--- >2
--- >
+-->2
+-->
 
 error
 
@@ -2150,7 +2150,7 @@ essential procedure
 
 (list 'a (4 3 4) ')
 
--- >
+-->
 
 (a 7 )
 
@@ -2468,7 +2468,7 @@ Returns #I true if obj is a symbol, otherwise returns #Ifalse.
 #1true
 #Itrue
 
--- >
+-->
 
 #Ifalse
 
@@ -2541,7 +2541,7 @@ read procedure converts to lower case:
 "flying-fish"
 "Martin"
 
--- >
+-->
 
 "tdalvina"
 
@@ -2566,11 +2566,11 @@ of Scheme they cannot be read as themselves. See symbol->string.
 (string->symbol
 OK. Harper. M.D."))
 
--- >
+-->
 
 Mississippi
 
--- >
+-->
 
 MISSISSIppi
 
@@ -2871,7 +2871,7 @@ procedure
 These procedures return the sum or product of their arguments.
 (+ 3 4)
 
--- >
+-->
 
 7
 
@@ -2879,15 +2879,15 @@ These procedures return the sum or product of their arguments.
 
 ( )
 
--- >
--- >
+-->
+-->
 
 3
 
 (*4)
 
--- >
--- >
+-->
+-->
 
 4
 
@@ -2930,21 +2930,21 @@ argument.
 4)
 (-345)
 
--- >
--- >
+-->
+-->
 
 -1
 -8
 
 (-3)
 
--- >
--- >
+-->
+-->
 
 -3
 3/20
 
--- >
+-->
 
 1/3
 
@@ -2967,11 +2967,11 @@ essential procedure
 
 (abs-)
 
--- >
+-->
 
 (abs -3+41)
 
--- >
+-->
 
 7
 
@@ -3043,8 +3043,8 @@ n->
 4
 n4
 
--- >
--- >
+-->
+-->
 
 The value returned by quotient always has the sign of the product of its
 arguments. Remainder and modulo differ on negative arguments as do the
@@ -3059,27 +3059,27 @@ of the dividend, the modulo always has the sign of the divisor:
 (modulo -13 -4)
 (remainder -13 -4)
 
--- >
---- >
--- >
+-->
+-->
+-->
 
 1
 1
 3
 -1
 
--- >
+-->
 
 3
 
--- >
+-->
 
 ->
 
 1
 -1
 
--- >
+-->
 
 -1
 
@@ -3101,8 +3101,8 @@ multiple of their arguments. The result is always non-negative.
 
 (gcd)
 
--- >
--- >
+-->
+-->
 
 4
 0
@@ -3110,11 +3110,11 @@ multiple of their arguments. The result is always non-negative.
 (1cm 32 -36)
 (1cm)
 
--- >
+-->
 
 288
 
--- >
+-->
 
 1
 procedure
@@ -3230,11 +3230,11 @@ for the empty string.
 
 bit
 
--- >
+-->
 
 oct
 
--- > 0
+--> 0
 
 I 1
 
@@ -3243,7 +3243,7 @@ I 1
 I 1 I 2 I 3
 --> oct I 8 I 9
 IbIc
--- > dit Ia
+--> dit Ia
 
 dit
 
@@ -3255,12 +3255,12 @@ IC
 
 IB
 
--- > *b
+--> *b
 #3B
 --> #o
 S0
 radlxlO --> <empty> [
-radix16 -- > #x I #X
+radix16 --> #x I #X
 
 I 4
 
@@ -3294,7 +3294,7 @@ I ft I #S
 --> <empty>
 --> <empty>
 
--- >
+-->
 
 "
 
@@ -3396,7 +3396,7 @@ Iexactness radixl6 precision
 Iexactness precision radixl6
 Iprecision radixIG exactness
 Iprecision exactness radixl6
-sign -- >
+sign -->
 empty> I+
 Isuffix -><empty>
 I
@@ -3936,8 +3936,8 @@ and the set of integers under the <-? ordering. That is, if
 
 b)
 
--- >
--- >
+-->
+-->
 
 #Itrue
 #Itrue
@@ -3947,14 +3947,14 @@ and z and y.are in the range of char->integer, then
 (char->integer
 ))
 
--- >
+-->
 
 #ttrue
 
 (char<=? (integer->char z)
 (integer->char y))
 
--- >
+-->
 
 #itrue
 
@@ -4239,7 +4239,7 @@ Returns a newly allocated vector whose elements contain the given arguments. Ana
 
 (a b c)
 
--- >
+-->
 
 (vector-length vec)
 
@@ -4293,7 +4293,7 @@ Returns a newly created vector whose elements are initialized to the
 elements of the proper list cit..
 (liat->vector '(dididit dali))
 
--- >
+-->
 
 *(dididit dali)
 
@@ -4381,18 +4381,18 @@ arguments. The second form is a generalization of the first that calls proc
 with the elements of (append (list argI ... ) args) as the actual arguments.
 (apply + (list 3 4))
 
--- >
+-->
 
 (define compose
 (lambda (f g)
 (lambda args
 (f (apply g args)))))
 
--- >
+-->
 
 ((compose 1+ *) 3 4)
 
--- >
+-->
 
 7
 
@@ -4411,20 +4411,20 @@ specified.
 
 (map cadr '((a b) (d e) (g h)))
 
--- >
+-->
 
 (b e h)
 
 (map (lambda (a) (expt n n))
 '(1 2 3 4 5))
 
--- >
+-->
 
 (1 4 27 256 3125)
 
 (map + '(1 2 3) '(4 5 6))
 
--- >
+-->
 
 (5 7 9)
 
@@ -4434,7 +4434,7 @@ specified.
 count)
 '(a b c)))
 
--- >
+-->
 
 .'4
 
@@ -4489,7 +4489,7 @@ The following examples show only the most common uses of call-withcurrent-contin
 '(54 0 37 -3 245 19))
 *#true))
 
--- >
+-->
 
 -3
 
@@ -4516,19 +4516,19 @@ S.
 (1+ (loop (cdr obj))))
 (else (return #Ifalse)))))
 obJ)))))
--- >
+-->
 
 list-length
 
 (list-length '(1 2 3 4))
 
--- >
+-->
 
 4
 
 (list-length '(a b . c))
 
--- >
+-->
 
 #Ifalse
 
