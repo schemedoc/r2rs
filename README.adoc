@@ -675,13 +675,13 @@ isequivalent to
 (it forl-result
 ((thunk2) forul-result)
 (thunk3)))
-(case ezpr clausel clause ... )
+(case expr clausel clause ... )
 
 special form
 
 Each clause isa list whose first element is a selector followed by one or
 more expressions. Each selectorshould be a list of values. The selectors are
-not evaluated. Instead ezpr is evaluated and its result is compared against
+not evaluated. Instead expr is evaluated and its result is compared against
 successive selectors using the ueav procedure until a match is found. Then
 the expressions in the selected cla e are evaluated from left to right and the
 result of the last expression in the clause is returned as the result of the case
@@ -734,7 +734,7 @@ selector that always matches.
 (case (car '(c Q)
 ((a a i o u) 'vowel)
 (else 'consonant))
-(and ezprl
+(and expr1
 
 -->
 
@@ -748,7 +748,7 @@ evaluates to a
 not evaluated.
 last expression
 
-the ezprs from left to right, returning false as soon as one
+the exprs from left to right, returning false as soon as one
 false value (see section 11.2). Any remaining expressions are
 If all the expressions evaluate to true values, the value of the
 is returned.
@@ -766,7 +766,7 @@ titrue
 
 special form
 
-Evaluates the ezprs from left to right, returning the value of the first expr
+Evaluates the exprs from left to right, returning the value of the first expr
 that evaluates to a true value (see section 11.2). Any remaining expressions
 are not evaluated. If all expressions evaluate to false values, false is returned.
 #ttrue
@@ -789,8 +789,8 @@ are not evaluated. If all expressions evaluate to false values, false is returne
 essential special form
 
 Evaluates the forms in the current environment (in some unspecified order), binds the wars to fresh locations holding the results, and then evaluates
-the ezprs in the extended environment from left to right, returning the value
-of the last one. Each binding of a war has ezprl ezprf ...as its region.
+the exprs in the extended environment from left to right, returning the value
+of the last one. Each binding of a war has expr1 ezprf ...as its region.
 (leot ((x 2) (y 3))
 --> 6
 (x y))
@@ -890,12 +890,12 @@ and letrec is that in a let the forms are not within the region of the vars
 being bound. See letrec.
 
 Some implementations of Scheme permit a 'named let' syntax in which
-(let name ((varl forml) ... ) ezprl ezprf...)
+(let name ((varl forml) ... ) expr1 ezprf...)
 
 p.
 
 is equivalent to
-((rec name (lambda (varl...) ezprl eprO... )) formi ... )
+((rec name (lambda (varl...) expr1 eprO... )) formi ... )
 (let* ((varl formi) ... ) ezpri exprf ... )
 
 special form
@@ -904,14 +904,14 @@ Similar to let, but the bindings are performed sequentially from left to
 right and the region of a binding indicated by (var form) is that part of the
 let* expression to the right of the binding. Thus the second binding is done
 in an environment in which the first binding is visible, and so on.
-(letrec ((varl forml) ... ) ezprl ezpri .. )
+(letrec ((varl forml) ... ) expr1 ezpri .. )
 
 essential special form
 S.
 
 Binds the vaS to fresh locations holding undefined values, evaluates the
 forms in the resulting environment (in some unspecified order), assigns to each
-var the result of the corresponding form, evaluates the ezprs sequentially in
+var the result of the corresponding form, evaluates the exprs sequentially in
 the resulting environment, and returns the value of the last ezpr. Each binding
 of a var has the entire letrec expression as its region, making it possible to
 define mutually recursive procedures. See let.
@@ -1112,15 +1112,15 @@ to
 
 (bar (lambda (a b) (+ ( a b) a))))
 (foo (+ x 3))))
-(define (varO varl ... ) ezprl ezprS ... )
+(define (varO varl ... ) expr1 ezprS ... )
 special form
-(define (form earl...) ezprl ezprf ... )
+(define (form earl...) expr1 ezprf ... )
 special form
 The first syntax, where varO is an identifier, is equivalent to
 (define varO (rec varO (lambda (varl ... ) exprl ezpr )))
 The second syntax, where form is a list, is sometimes convenient for defining
 a procedure that returns another procedure as its result. It is equivalent to
-(define form (lambda (earl ... ) ezprl ezpr...))."
+(define form (lambda (earl ... ) expr1 ezpr...))."
 (set!
 
 ear ezpr)
@@ -1158,7 +1158,7 @@ of the last expr. Used to sequence side effects such as input and output.
 (1+ x))
 -6
 
-(begin ezprl expri
+(begin expr1 expri
 
 Also
 (begin (display 04 plus 1 equals ")
@@ -1166,7 +1166,7 @@ Also
 prints 4 plus 1 equals 5
 A number of special forms such as lambda and letrec implicitly treat their
 bodies as begin expressions.
-(sequence ezprl ezprS ...
+(sequence expr1 ezprS ...
 
 )
 
@@ -1186,7 +1186,7 @@ macro. The varspeca specify variables to be bound, how they are to be initialize
 the general form looks like:
 (do ( varl initl atepl) ...
 )
-(test ezprl ... )
+(test expr1 ... )
 stmtl ...
 )
 
@@ -1201,8 +1201,8 @@ bindings of the vats, and the next iteration begins.
 •,
 ".
 
-If test evaluates true, then the ezprs are evaluated from left to right and the
-value of the last ezpr is returned as the value of the do expression. If no ezprs
+If test evaluates true, then the exprs are evaluated from left to right and the
+value of the last ezpr is returned as the value of the do expression. If no exprs
 are present, then the value of the do expression is unspecified.
 I.
 
