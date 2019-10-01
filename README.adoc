@@ -519,360 +519,119 @@ matched up against the formal arguments.
 
     ((lambda (x y . z) z) 3 4 5 6)  --> (5 6)
 
------
+(*if* _condition_ _consequent_ _alternative_) [essential special form] +
+(*if* _condition_ _consequent_) [special form]
 
-(ifcondition conseqmt altersaive)
-essential special form
-(ifcondition consequent)
-special form
-First evaluates condition. Ifityields a true value (see section 11.2), then
-consequent is evaluated and its value isreturned. Otherwise alternative is
-evaluated and its value isreturned. Ifno alternstivee is specified, then the if
-expression isevaluated only for its effect, and the result of the expression is
+First evaluates _condition_. If it yields a true value (see section
+II.2), then _consequent_ is evaluated and its value is returned.
+Otherwise _alternative_ is evaluated and its value is returned. If no
+_alternative_ is specified, then the if expression isevaluated only
+for its effect, and the result of the expression is unspecified.
+
+    (if (>? 3 2) 'yes 'no)          --> yes
+    (if (>? 2 3) 'yes 'no)          --> no
+    (if (>? 3 2) (- 3 2) (+ 3 2))   --> 1
+
+(*cond* _clause1_ _clause2_ _..._) [essential special form]
+
+Each _clause_ must be a list of one or more expressions. The first
+expression in each _clause_ is a boolean expression that serves as the
+_guard_ for the _clause_. The _guards_ are evaluated in order until
+one of them evaluates to a true value (see section II.2). When a
+_guard_ evaluates true, then the remaining expressions in its _clause_
+are evaluated in order, and the result of the last expression in the
+selected _clause_ is returned as the result of the entire expression.
+If the selected _clause_ contains only the guard, then the value of
+the _guard_ is returned as the result. If all _guards_ evaluate to
+false values, then the result of the conditional expression is
 unspecified.
-(if (>? 3 2) 'yes 'no)
---> yes
-no
--- )
-(if 0? 2 3) 'yes 'zo)
-(if W?32) (-32) (432)) -I
-Ut
 
-"
+    (cond ((>? 3 2) 'greater)
+          ((<? 3 2) 'less))         --> greater
 
-X.
+The keyword or variable `else` may be used as a _guard_ to obtain the
+effect of a _guard_ that always evaluates true.
 
-'
+    (cond ((>? 3 3) 'greater)
+          ((<? 3 3) 'less)
+          (else 'equal))            --> equal
 
-#.'.e,,..-...v,o €
+The above forms for the _clauses_ are essential. Some implementations
+support yet another form of _clause_ such that
 
-7
+    (cond (form1 -> form2) ...)
 
-6
+is equivalent to
 
-% ."
-€o,. ,.
+    (let ((form1-result form1)
+          (thunk2 (lambda () form2))
+          (thunk3 (lambda () (cond ...))))
+      (if form1-result
+          ((thunk2) form1-result)
+          (thunk3)))
 
-.,
+(*case* _expr_ _clause1_ _clause2_ _..._) [special form]
 
-.4*
-,P
-
-.,*'.P *.
-J"--
-
-%
-*,
-
-"r5'
-*s
-
-.
-"*.4"S" .f
-
-%,"
-
-",":,,
-
-.
-€
-
-,""P"*%
-
-,
-
-,YN
-
-:"
-
-,
-
-t,
-
-. -_
-
-.,
-
-6 --
-
-=
-
-...
-
-_.= t..'._.
-
-_
-
-i...
-
-__
-
-L.-.
-
-_
-
-o-
-
-.
-
-L
-
-j.
-
-.:
-
-a
-
-.a
--
-
--.
-
-.a
-
-14
-
-The Revised Revised Report on Scheme
-(cond clauel clausef ... )
-
-essential special form
-
-Each clause must be a list of one or more expressions. The first expression
-in each clause is a boolean expression that serves as the guardfor the clause.
-The guards are evaluated in order until one of them evaluates to a true value
-(see section 11.2). When a guardevaluates true, then the remaining expressions
-in its clase are evaluated in order, and the result of the last expression in the
-selected clause isreturned as the result of the entire expression. If the selected
-clause contains only the guard, then the value of the guardis returned as the
-result. If all guards evaluate to false values, then the result of the conditional
+Each _clause_ is a list whose first element is a _selector_ followed
+by one or more expressions. Each _selector_ should be a list of
+values. The _selector_s are not evaluated. Instead _expr_ is evaluated
+and its result is compared against successive _selector_s using the
+`memv` procedure until a match is found. Then the expressions in the
+selected _clause_ are evaluated from left to right and the result of
+the last expression in the _clause_ is returned as the result of the
+case expression. If no _selector_ matches then the result of the case
 expression is unspecified.
-(cond ((>? 3 2) 'greater)
-((<? 3 2) 'less))
 
---
+    (case (* 2 3)
+      ((2 3 5 7) 'prime)
+      ((1 4 6 8 9) 'composite))     --> composite
+    (case (car '(c d))
+      ((a) 'a)
+      ((b) 'b))                     --> unspecified
 
-greater
-g
+The special keyword `else` may be used as a selector to obtain the
+effect of a selector that always matches.
 
-The keyword or variable else may be used as a guardto obtain the effect of
-a guard that always evaluates true.
-(cond ((>? 3 3) 'greater)
-((<? 3 3) 'less)
-(else 'equal))
+    (case (car '(c d))
+      ((a e i o u) 'vowel)
+      ((y) 'y)
+      (else 'consonant))            --> consonant
 
--->
+(*and* _expr1_ _..._) [special form]
 
-equal
+Evaluates the _expr_s from left to right, returning false as soon as
+one evaluates to a false value (see section II.2). Any remaining
+expressions are not evaluated. If all the expressions evaluate to true
+values, the value of the last expression is returned.
 
-The above forms for the clas es are essential. Some implementations support
-yet another form of clase such that
+    (and (=? 2 2) (>? 2 1))         --> #!true
+    (and (=? 2 2) (<? 2 1))         --> #!false
+    (and 1 2 'c '(f g))             --> (f g)
 
-(cond (fOrul -> fora2) ... )
-isequivalent to
-(let ((orml-result forul)
-(tuzk2 (laubda ) form2))
-(thunkS (laubda ) (cond ...))))
-(it forl-result
-((thunk2) forul-result)
-(thunk3)))
-(case expr clausel clause ... )
+(*or* _expr1_ _..._) [special form]
 
-special form
+Evaluates the exprs from left to right, returning the value of the
+first _expr_ that evaluates to a true value (see section II.2). Any
+remaining expressions are not evaluated. If all expressions evaluate
+to false values, false is returned.
 
-Each clause isa list whose first element is a selector followed by one or
-more expressions. Each selectorshould be a list of values. The selectors are
-not evaluated. Instead expr is evaluated and its result is compared against
-successive selectors using the ueav procedure until a match is found. Then
-the expressions in the selected cla e are evaluated from left to right and the
-result of the last expression in the clause is returned as the result of the case
-expression. If no selector matches then the result of the case expression is
+    (or (=? 2 2) (>? 2 1))          --> #!true
+    (or (=? 2 2) (<? 2 1))          --> #!true
+    (or #!false #!false #!false)    --> #!false
+    (or (memq 'b '(a b c)) (/ 3 0)) --> (b c)
 
-*
+(*let* ((_var1_ _form1_) ...) _expr1_ _expr2_ ...) [essential special form]
 
-m
+Evaluates the _form_s in the current environment (in some unspecified
+order), binds the _var_s to fresh locations holding the results, and
+then evaluates the _expr_s in the extended environment from left to
+right, returning the value of the last one. Each binding of a _var_
+has _expr1 expr2 ..._ as its region.
 
-*l-,.N
+    (let ((x 2) (y 3))
+      (* x y))                      --> 6
 
--
-
-.
-
-*
-
-- t,:
-a
-
-. .t
-
-.d
-
-d
-
-15
-
-The Revised Revised Report on Scheme
-
-unspecified.
-(case (* 2 3)
-((2 3 5 7) 'prime)
-(1 4 6 8 9) 'composite))
-(came (car '(c d))
-((a) 'a)
-
-composite
-
--->
-
-((b) 'b))
-
-unspecified
-
--->
-
-The special keyword else may be used as a selector to obtain the effect of a
-selector that always matches.
-(case (car '(c Q)
-((a a i o u) 'vowel)
-(else 'consonant))
-(and expr1
-
--->
-
-consonant
-special form
-
-... )
-
-Evaluates
-evaluates to a
-not evaluated.
-last expression
-
-the exprs from left to right, returning false as soon as one
-false value (see section 11.2). Any remaining expressions are
-If all the expressions evaluate to true values, the value of the
-is returned.
--->
-titrue
-(and (-? 2 2) (>? 2 1))
--->
-*Ifalse
-(and (-? 2 2) (? 2 1))
-"'> (f g)
-(and 1 2 'c '(f g))
-
-)
-(or expri ...
-
-special form
-
-Evaluates the exprs from left to right, returning the value of the first expr
-that evaluates to a true value (see section 11.2). Any remaining expressions
-are not evaluated. If all expressions evaluate to false values, false is returned.
-#ttrue
--->
-2?
-22) (>? 21))
-(or (
---> #Itrue
-2?
-22 (W? 21))
-(or (
--->
-#12alse
-(or #ifalse #Ifalse 0Iialse)
-) (/ 3 0)) --> (b c)
-(or (memq 'b '(a b
-)
-(let ((varl forml) ...) exprl exprR ...
-
-essential special form
-
-Evaluates the forms in the current environment (in some unspecified order), binds the wars to fresh locations holding the results, and then evaluates
-the exprs in the extended environment from left to right, returning the value
-of the last one. Each binding of a war has expr1 ezprf ...as its region.
-(leot ((x 2) (y 3))
---> 6
-(x y))
-
-',
-
--.'
-
-_ ' .'
-: : ' " _-"
-.' ,.
-" .'''.
-'..: " ' ;-.''.-.
-. , e---?
-. ,..
--.
-. :.
-,',
-. -,r.e,
-, .
-
-.
-
-.-.
-
-..
-
-.•..
-
--
-
-.'''.,'.
-.
-
-. . . . . .. . .
-
-',.'.-"":''.,.''.-,''..
-.-. .
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
--, *".-.
-..-.
-
-.--.--,
-
-.
-.
-
-. . ...
-,-...
-.
-
-.
-
-.
-.
-
-. " '....
-. -
-
-.
-_,
-. , ..
-
-.,
-
-.,
-
-16
+-----
 
 The Revised Revised Report on Scheme
 (let ((x 2) (y 3))
