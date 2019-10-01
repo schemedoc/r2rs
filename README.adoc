@@ -631,279 +631,139 @@ has _expr1 expr2 ..._ as its region.
     (let ((x 2) (y 3))
       (* x y))                      --> 6
 
------
+    (let ((x 2) (y 3))
+      (let ((foo (lambda (z) (+ x y z)))
+            (x 7))
+        (foo 4)))                   --> 9
 
-The Revised Revised Report on Scheme
-(let ((x 2) (y 3))
-(let ((foo (lambda (z) (
+`let` and `letrec` give Scheme a block structure. The difference
+between `let` and `letrec` is that in a `let` the _form_s are not
+within the region of the _var_s being bound. See `letrec`.
 
-x y z)))
--->
+Some implementations of Scheme permit a "named let" syntax in which
 
-(too 4)))
-
-9
-
-let and letrec give Scheme a block structure. The difference between let
-and letrec is that in a let the forms are not within the region of the vars
-being bound. See letrec.
-
-Some implementations of Scheme permit a 'named let' syntax in which
-(let name ((varl forml) ... ) expr1 ezprf...)
-
-p.
+    (let name ((var1 form1) ...) expr1 expr2 ...)
 
 is equivalent to
-((rec name (lambda (varl...) expr1 eprO... )) formi ... )
-(let* ((varl formi) ... ) ezpri exprf ... )
 
-special form
-
-Similar to let, but the bindings are performed sequentially from left to
-right and the region of a binding indicated by (var form) is that part of the
-let* expression to the right of the binding. Thus the second binding is done
-in an environment in which the first binding is visible, and so on.
-(letrec ((varl forml) ... ) expr1 ezpri .. )
-
-essential special form
-S.
-
-Binds the vaS to fresh locations holding undefined values, evaluates the
-forms in the resulting environment (in some unspecified order), assigns to each
-var the result of the corresponding form, evaluates the exprs sequentially in
-the resulting environment, and returns the value of the last ezpr. Each binding
-of a var has the entire letrec expression as its region, making it possible to
-define mutually recursive procedures. See let.
-(letrec ((x 2) (y 3))
-(letrec ((foo (lambda (z)
-
-(fto
-
-~4* ~.d
-
-4)))
-
-~
-
-(+ x y z)))
--->
-
-14
-
-~
-
-v
-
-(x 7))
-
-~
-
-.
-
-*
-
-*'*
-
-.
-
-The Revised Revised Report on Scheme
-(letrec
-
-1?
-
-((even?
-(lambda (n)
-(if (zero? n)
-# Itrue
-(odd? (-I+ n)))))
-
-.
-
-(odd?
-
-(lambda (n)
-(if (zero? n)
-#Ifalse
-(even? (-1+ n))))))
-(even? 88))
--->
-
-OItrue
-
-One restriction on letrec is very important: it must be possible to evaluate
-each form without referring to the value of a war. If this restriction is violated,
-then the effect is undefined, and an er-or may be reported during evaluation
-of the forms. The restriction is necessary because Scheme passes arguments
-by value rather than by name. In the most common uses of letrec, all the
-forms are lambda expressions and the restriction is satisfied automatically.
-(rec
-
-tr ezpr)
-
-special form
-
-Equivalent to (letrec ((tar ezpr))
-self-recursive procedures.
-(named-lambda (name vatrl
-
-...
-
-ezpr
-
-tr).
-
-rec is useful for defining
-J.
-
-...
-
-1
-
-special form
-
-Equivalent to (rec name (lambda (warl ...
-
-)
-
-ezpr ...
-
-))
-a%
-
-Rationale: Some implementatations may find it easier to provide good debugging information when named-lambda is used instead of rec.
-(define tar ezpr)
-
-essential special form
-
-When typed at top level, so that it is not nested within any other expression, this form has essentially the same effect as the assignment (set I tar
-ezpr) if tar is bound. If ear is not bound, however, then the define form will
-bind tar before performing the assignment, whereas it would be an error to
-perform a setI on an unbound identifier. The value returned by a define
-form is not specified.
-
-%
-
-%%
-
-A-
-
-.,"
-
-""..'•
-
-".
-
-.'.
-
--".
-
-.
-
-.
-
-.
-
-• •
-
-". " ". " ". "
-
-,
-
-."
-
--
-
--
-
-..
-
-".:
-
-.
-
-,
-
-" ,
-
-,
-
-The RevIsed Revised Report on Scheme
-
-is
-
-(define add3 (lambda (x) (+ x 3)))
-(add3 3)
-(define first car)
-(first '(1 2))
-
--->
-
-unspecified
-
--->6
--->
--->
-
-unspecified
-1
-
-The semantics just described is essential. Some implementations also allow
-define expressions to appear at the beginning of the body of a lambda,
-named-lambda, let, let*, or letrec expression. Such expressions are known
-as internal definitions as opposed to the top level definitions described above.
-The variable defined by an internal definition is local to the body of the
-lambda, named-lambda, let, let*, or letrec expression. That is, var is
-bound rather than assigned, and the region set up by the binding is the entire
-body of the lambda, named-lambda, let, let*, or letrec expression. For
+    ((rec name (lambda (var1 ...) expr1 expr2 ...)) form1 ...)
+
+(*let** ((_var1_ _form1_) ...) _expr1_ _expr2_ ...) [special form]
+
+Similar to _let_, but the bindings are performed sequentially from
+left to right and the region of a binding indicated by (_var_ _form_)
+is that part of the `let*` expression to the right of the binding.
+Thus the second binding is done in an environment in which the first
+binding is visible, and so on.
+
+(*letrec* ((_var1_ _form1_) ...) _expr1_ _expr2_ ...) [essential special form]
+
+Binds the _var_s to fresh locations holding undefined values,
+evaluates the _form_s in the resulting environment (in some
+unspecified order), assigns to each _var_ the result of the
+corresponding _form_, evaluates the _expr_s sequentially in the
+resulting environment, and returns the value of the last _expr_. Each
+binding of a _var_ has the entire letrec expression as its region,
+making it possible to define mutually recursive procedures. See `let`.
+
+    (letrec ((x 2) (y 3))
+      (letrec ((foo (lambda (z) (+ x y z))) (x 7))
+        (foo 4)))                   --> 14
+
+    (letrec  ((even?
+               (lambda (n)
+                 (if (zero? n)
+                     #!true
+                     (odd? (-1+ n)))))
+              (odd?
+               (lambda (n)
+                 (if (zero? n)
+                     #!false
+                     (even? (-1+ n))))))
+      (even? 88))
+                                    --> #!true
+
+One restriction on letrec is very important: it must be possible to
+evaluate each form without referring to the value of a var. If this
+restriction is violated, then the effect is undefined, and an error
+may be reported during evaluation of the forms. The restriction is
+necessary because Scheme passes arguments by value rather than by
+name. In the most common uses of letrec, all the forms are lambda
+expressions and the restriction is satisfied automatically.
+
+(*rec* _var_ _expr_) [special form]
+
+Equivalent to `(letrec ((var expr)) var)`. `rec` is useful for
+defining self-recursive procedures.
+
+(*named-lambda* (_name_ _var1_ ...) _expr_ ...) [special form]
+
+Equivalent to `(rec name (lambda (var1 ...) expr ...))`
+
+_Rationale_: Some implementations may find it easier to provide good
+edebugging information when `named-lambda` is used instead of `rec`.
+
+(*define* _var_ _expr_) [essential special form]
+
+When typed at top level, so that it is not nested within any other
+expression, this form has essentially the same effect as the
+assignment `(set! var expr)` if var is bound. If var is not bound,
+however, then the define form will bind var before performing the
+assignment, whereas it would be an error to perform a `set!` on an
+unbound identifier. The value returned by a `define` form is not
+specified.
+
+    (define add3 (lambda (x) (+ x 3)))  --> unspecified
+    (add3 3)                            --> 6
+    (define first car)                  --> unspecified
+    (first '(1 2))                      --> 1
+
+The semantics just described is essential. Some implementations also
+allow define expressions to appear at the beginning of the body of a
+lambda, named-lambda, let, let*, or letrec expression. Such
+expressions are known as internal definitions as opposed to the top
+level definitions described above. The variable defined by an internal
+definition is local to the body of the lambda, named-lambda, let,
+let*, or letrec expression. That is, var is bound rather than
+assigned, and the region set up by the binding is the entire body of
+the lambda, named-lambda, let, let*, or letrec expression. For
 example,
-(let ((x 5))
-(define foe (lambda (y) (bar x y)))
-(define bar (lambda (a b) (+ (* a b) a)))
-(foe ( x 3)))
--->
-45
-Internal definitions can always be converted into an equivalent letrec expression. For example, the let expression in the above example is equivalent
-to
-(let ((x 5))
-(letrec ((foo (lambda (y)
 
-(bar x y)))
+    (let ((x 5))
+      (define foo (lambda (y) (bar x y)))
+      (define bar (lambda (a b) (+ (* a b) a)))
+      (foo (+ x 3)))                --> 45
 
-(bar (lambda (a b) (+ ( a b) a))))
-(foo (+ x 3))))
-(define (varO varl ... ) expr1 ezprS ... )
-special form
-(define (form earl...) expr1 ezprf ... )
-special form
+Internal definitions can always be converted into an equivalent letrec
+expression. For example, the let expression in the above example is
+equivalent to
+
+    (let ((x 5))
+      (letrec ((foo (lambda (y) (bar x y)))
+               (bar (lambda (a b) (+ (* a b) a))))
+        (foo (+ x 3))))
+
+(*define* (_var0_ _var1_ ...) _expr1_ _expr2_ ...) [special form] +
+(*define* (_form_ _var1_ ...) _expr1_ _expr2_ ...) [special form]
+
 The first syntax, where varO is an identifier, is equivalent to
-(define varO (rec varO (lambda (varl ... ) exprl ezpr )))
-The second syntax, where form is a list, is sometimes convenient for defining
-a procedure that returns another procedure as its result. It is equivalent to
-(define form (lambda (earl ... ) expr1 ezpr...))."
-(set!
 
-ear ezpr)
+    (define var0 (rec var0 (lambda (var1 ...) expr1 expr2)))
 
-essential special form
+The second syntax, where form is a list, is sometimes convenient for
+defining a procedure that returns another procedure as its result. It
+is equivalent to `(define form (lambda (var1 ...) expr1 expr2 ...))`.
 
-Stores the value of ezpr in the location to which ear is bound. ezpr is
-evaluated but ear is not. The result of the set ! expression is unspecified.
-(set! x 4)
-(1+ x)
+(*set!* _var_ _expr_) [essential special form]
 
--->
+Stores the value of expr in the location to which var is bound. expr
+is evaluated but var is not. The result of the `set!` expression is
+unspecified.
 
--->
+    (set! x 4)                      --> unspecified
+    (1+ x)                          --> 5
 
-unspecified
-
-5
-
-fC
-
-I.
-
-I|
+-----
 
 The Revised Revised Report on Scheme
 
