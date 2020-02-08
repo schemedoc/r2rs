@@ -9,12 +9,12 @@ AI Memo No. 848 / August 1985
 
 |===
 |Hal Abelson                     |Chris Haynes
-|Norman Adams                    |Eugene Kohibecker
+|Norman Adams                    |Eugene Kohlbecker
 |David Bartley                   |Don Oxley
 |Gary Brooks                     |Kent Pitman
 |William Clinger [editor]        |Jonathan Rees
 |Dan Friedman                    |Bill Rozas
-|Robert Halstead                 |Gerald Jay Sussnan
+|Robert Halstead                 |Gerald Jay Sussman
 |Chris Hanson                    |Mitchell Wand
 |===
 
@@ -41,7 +41,7 @@ provided by NSF Grants NCS 83-0467 and NCS 83-03325. This report is
 published at Indiana University as Computer Science Department
 Technical Report 174, June 1985.
 
-Keywords: SCHEME, LISP, functional programmng, computer languages.
+Keywords: SCHEME, LISP, functional programming, computer languages.
 
 ---
 
