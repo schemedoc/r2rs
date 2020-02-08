@@ -788,7 +788,7 @@ treat their bodies as `begin` expressions.
 _Rationale_: `sequence` was used in the Abelson and Sussman text, but
 it should not be used in new code.
 
-(*do* _verspecs_ _exit_ _stmt1_ ...) [special form]
+(*do* _varspecs_ _exit_ _stmt1_ ...) [special form]
 
 The `do` special form is an extremely general albeit complex iteration
 macro. The _varspec_s specify variables to be bound, how they are to
