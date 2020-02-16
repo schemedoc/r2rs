@@ -367,7 +367,7 @@ language reported here.
 
 Any Scheme value can be used as a boolean expression for the purpose
 of a conditional test. As explained in section 11.2, most values count
-as true, but a few-notably #I false-count as false. This manual uses
+as true, but a few-notably `#!false`-count as false. This manual uses
 the word "true" to refer to any Scheme value that counts as true in a
 conditional expression, and the word "false" to refer to any Scheme
 value that counts as false.
@@ -1128,7 +1128,7 @@ o6l)
 
 essential procedure
 
-Returns #Itrue if ob is a pair, otherwise returns
+Returns `#!true` if ob is a pair, otherwise returns
 (pair?
 (pair?
 (pair?
@@ -1692,7 +1692,7 @@ Rationale: nenq. mear. member, assq. assv, and assoc do not have question marks 
 
 ;
 
-# Itrue.
+`#!true`.
 
 "
 .
@@ -1763,7 +1763,7 @@ and only if their names are spelled the same. It is questionable whether these
 features are worth their complexity, so they are not standard in Scheme.
 (symbol? obj)
 essential procedure
-Returns #I true if obj is a symbol, otherwise returns #Ifalse.
+Returns #I true if obj is a symbol, otherwise returns `#!false`.
 (symbol? 'foo)
 (symbol? (car '(a b)))
 (symbol? "bar")
@@ -1771,12 +1771,12 @@ Returns #I true if obj is a symbol, otherwise returns #Ifalse.
 -->
 -->
 
-#1true
-#Itrue
+`#!true`
+`#!true`
 
 -->
 
-#Ifalse
+`#!false`
 
 a.:
 
@@ -3107,7 +3107,7 @@ The upper case characters are in order.
 
 The lower case characters are in order. For example, (char<? #\a #\b)
 returns # true.
-The digits are in order. For example, (char<? 8\o #\9) returns # Itrue.
+The digits are in order. For example, (char<? 8\o #\9) returns `#!true`.
 
 *
 *
@@ -3223,7 +3223,7 @@ procedure
 procedure
 (char-whitespace? char)
 procedure
-Char must be a character These procedures return # true if their arguments are upper case, lower case, alphabetic, numeric, or whitespace characters, respectively, otherwise they return #1false. The following remarks,
+Char must be a character These procedures return # true if their arguments are upper case, lower case, alphabetic, numeric, or whitespace characters, respectively, otherwise they return `#!false`. The following remarks,
 which are specific to the ASCII character set, are intended only as a guide.
 The alphabetic characters are the 52 upper and lower case letters. The numeric characters are the 10 decimal digits. The whitespace characters are tab,
 line feed, form feed, carriage return, and space.
@@ -3245,8 +3245,8 @@ b)
 -->
 -->
 
-#Itrue
-#Itrue
+`#!true`
+`#!true`
 
 and z and y.are in the range of char->integer, then
 (<a? (char->integer a)
@@ -3331,12 +3331,12 @@ obj)
 
 essential procedure
 
-Returns #1true if obi is a string, otherwise returns #Ifalse.
+Returns `#!true` if obi is a string, otherwise returns `#!false`.
 (string-nullstring)
 
 essential procedure
 
-string must be a string. Returns #1 true if string has zero length, otherwise returns #1false.
+string must be a string. Returns #1 true if string has zero length, otherwise returns `#!false`.
 
 .9.
 .9.
@@ -3350,7 +3350,7 @@ essential procedure
 procedure
 (string-ci=? stringl stringf)
 Returns # true if the two strings are the same length and contain the
-same characters in the same positions, otherwise returns #1false. stringci-? treats upper and lower case letters as though they were the same character, but string-? treats upper and lower case as distinct characters.
+same characters in the same positions, otherwise returns `#!false`. stringci-? treats upper and lower case letters as though they were the same character, but string-? treats upper and lower case as distinct characters.
 
 essential procedure
 
@@ -3524,7 +3524,7 @@ obj)
 
 essential procedure
 
-Returns #1true if obj isa vector, otherwise returns #I false.
+Returns `#!true` if obj isa vector, otherwise returns `#!false`.
 (make-vector size)
 (make-vector size fill)
 
@@ -3645,7 +3645,7 @@ x
 >>> (gc)
 
 >>> (obJect-unhash 77)
-ill-defined: # Ifalse or (0.0)
+ill-defined: `#!false` or (0.0)
 
 %
 
@@ -3820,7 +3820,7 @@ S.
 ((pair? obJ)
 
 (1+ (loop (cdr obj))))
-(else (return #Ifalse)))))
+(else (return `#!false`)))))
 obJ)))))
 -->
 
@@ -3836,7 +3836,7 @@ list-length
 
 -->
 
-#Ifalse
+`#!false`
 
 Rationale: The classic use of call-with-current-continuation isfor structured, non-local exits from loops or procedure bodies, but infact call-withcurrent-continuation is extremely useful for implementing a wide variety
 of advanced control structures.
@@ -3930,7 +3930,7 @@ or call-with-output-port.
 essential procedure
 (output-port? obj)
 essential procedure
-Returns #Itrue if obi is an input port or output port (respectively),
+Returns `#!true` if obi is an input port or output port (respectively),
 otherwise returns #false.
 (current-nput-port)
 (current-output-port)
@@ -4020,7 +4020,7 @@ I
 
 (eof-object? obj)
 essential procedure
-Returns * Itrue if o bj is an end of file object, otherwise returns # Ifalse.
+Returns * Itrue if o bj is an end of file object, otherwise returns `#!false`.
 The precise set of end of file objects will vary among implementations, but in
 any case no end of file object will ever be a character or an object that can
 be read in using read.
@@ -4054,9 +4054,9 @@ procedure
 (char-ready? port)
 procedure
 Returns 8#true if a character is ready on the input port and returns
-# 1f alse otherwise. If char-ready returns # Itrue then the next read-char
+# 1f alse otherwise. If char-ready returns `#!true` then the next read-char
 operation on the given port is guaranteed not to hang. If the port is at end of
-file then char-ready? returns # Itrue. port may be omitted, in which case it
+file then char-ready? returns `#!true`. port may be omitted, in which case it
 defaults to the value returned by current -input -port.
 
 m*
