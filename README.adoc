@@ -839,455 +839,176 @@ Common Lisp. The main difference is that in Scheme the identifier
 Common Lisp must do so explicitly (see
 `call-with-current-continuation`).
 
-----------------------------------------------------------------------
+`_pattern_ [special form]
 
-'pattern
-special form
-The backquote special form is useful for constructing a list structure when
-most but not all of the desired structure is known in advance. If no commas
-appear within the pattern, the result of evaluating 'pattern is equivalent (in
-the sense of equal?) to the result of evaluating 'pattern. If a comma appears
-within the pattern, however, the expression following the comma is evaluated
-and its result is inserted into the structure instead of the comma and the
-expression. If a comma appears followed immediately by an at-sign (a),
-then the following expression must evaluate to a list; the opening and closing
-parentheses of the list are then 'stripped away" and the elements of the list
-are inserted in place of the comma/at-sign/expression sequence.
-'(a ,(+ 1 2) ,Q(sap 1+ '(4 5 6)) b)
--->
-(a 3 5 6 7 b)
-*(((oo ,(- 10 3)) .e(cdr '(c)) cons)) --> (((foo 7) cons))
-Scheme does not have any standardfacility for defining new special forms.
-Rationale: The ability to define new special forms creates numerous problems.
-All current implementations of Scheme have macro facilities that solve those
-problems to one degree or another, but the solutions are quite different and
-it isn't clear at this time which solution is best, or indeed whether any of the
-solutions are truly adequate. Rather than standardize, we are encouraging
-implementations to continue to experiment with different solutions.
+The backquote special form is useful for constructing a list structure
+when most but not all of the desired structure is known in advance. If
+no commas appear within the _pattern_, the result of evaluating
+`_pattern_ is equivalent (in the sense of equal?) to the result of
+evaluating `_pattern_. If a comma appears within the _pattern_,
+however, the expression following the comma is evaluated and its
+result is inserted into the structure instead of the comma and the
+expression. If a comma appears followed immediately by an at-sign
+(`@`), then the following expression must evaluate to a list; the
+opening and closing parentheses of the list are then "stripped away"
+and the elements of the list are inserted in place of the
+comma/at-sign/expression sequence.
 
-%.
+    `(a ,(+ 1 2) ,@(map 1+ '(4 5 6)) b)    -->  (a 3 5 6 7 b)
+    `(((foo ,(- 10 3)) ,@(cdr '(c)) cons)) -->  (((foo 7) cons))
 
-The Revised Revised Report on Scheme
+_Scheme does not have any standard facility for defining new special
+forms._
 
-21
-
-'1,
+_Rationale_: The ability to define new special forms creates numerous
+problems. All current implementations of Scheme have macro facilities
+that solve those problems to one degree or another, but the solutions
+are quite different and it isn't clear at this time which solution is
+best, or indeed whether any of the solutions are truly adequate.
+Rather than standardize, we are encouraging implementations to
+continue to experiment with different solutions.
 
 The main problems with traditional macros are: They must be defined to
-the system before any code using them is loaded; this is a common source
-of obscure bugs. They are usually global; macros can be made to follow
-lexical scope rules as in Common Lisp's nacrolet, but many people find
-the resulting scope rules confusing. Unless they are written very carefully,
-macros are vulnerable to inadvertant capture of free variables; to get around
-this, for example, macros may have to generate code in which procedure
-values appear as quoted constants. There is a similar problem with keywords
-if the keywords of special forms are not reserved. If keywords are reserved,
-then either macros introduce new reserved words, invalidating old code, or
-else special forms defined by the programmer do not have the same status as
-special forms defined by the system.
+the system before any code using them is loaded; this is a common
+source of obscure bugs. They are usually global; macros can be made to
+follow lexical scope rules as in Common Lisp's _macrolet_, but many
+people find the resulting scope rules confusing. Unless they are
+written very carefully, macros are vulnerable to inadvertant capture
+of free variables; to get around this, for example, macros may have to
+generate code in which procedure values appear as quoted constants.
+There is a similar problem with keywords if the keywords of special
+forms are not reserved. If keywords are reserved, then either macros
+introduce new reserved words, invalidating old code, or else special
+forms defined by the programmer do not have the same status as special
+forms defined by the system.
 
-I.
+### II.2. Booleans
 
-p..
+The standard boolean objects for truth and falsity are written as
+`#!true` and `#!false`. What really matters, though, are the objects
+that the Scheme conditional expressions (`if`, `cond`, `and`, `or`,
+`do`) will treat as though they were true or false. The phrase "a true
+value" (or sometimes just "true") means any object treated as true by
+the conditional expressions, and the phrase "a false value" (or
+"false") means any object treated as false by the conditional
+expressions. All of the conditional expressions are equivalent in that
+an object treated as false by any one of them is treated as false by
+all of them, and likewise for true values.
 
-p
+Of all the standard Scheme values, only `#!false` and the empty list
+count as false in conditional expressions. `#!true`, pairs (and
+therefore lists), symbols, numbers, strings, vectors, and procedures
+all count as true.
 
-I::
+The empty list counts as false for historical reasons only, and
+programs should not rely on this because future versions of Scheme
+will probably do away with this nonsense.
 
-:;-
+Programmers accustomed to other dialects of Lisp should beware that
+Scheme has already done away with the nonsense that identifies the
+empty list with the symbol nil.
 
-,pip
-.o~
+`#!false` [essential constant]
 
-.
+`#!false` is the boolean value for falsity. The `#!false` object is
+self-evaluating. That is, it does not need to be quoted in programs.
 
---.-
+    '#!false --> #!false
+    #!false  --> #!false
 
-.
+`#!true` [essential constant]
 
-.
+`#!true` is the boolean value for truth. The `#!true` object is
+self-evaluating, and does not need to be quoted in programs.
 
-.
+(*not* _obj_) [essential procedure]
 
-.
+Returns `#!true` if _obj_ is false and returns `#!false` otherwise.
 
--
+*nil* [variable] +
+*t* [variable]
 
-.
-
-.
-
-.
-
-,
-
--.-
-
-.
-
-..
-
-The Revised Revised Report on Scheme
-
-.
-
--
-
-. .
-
-.
-
-. ..
-
-.
-
-22
-
-11.2. Booleans
-The standard boolean objects for truth and falsity are written as # 1true
-and # Ifalse. What really matters, though, are the objects that the Scheme
-conditional expressions (if, cond, and, or, do) will treat as though they were
-true or false. The phrase "a true value3 (or sometimes just "true") means
-any object treated as true by the conditional expressions, and the phrase "a
-false value' (or "false') means any object treated as false by the conditional
-expressions. All of the conditional expressions are equivalent in that an object
-treated as false by any one of them is treated as false by all of them, and
-likewise for true values.
-Of all the standard Scheme values, only # Ifalse and the empty list count as
-false in conditional expressions. *Itrue, pairs (and therefore lists), symbols,
-numbers, strings, vectors, and procedures all count as true.
-
-.
-
-The empty list counts as false for historical reasons only, and programs should
-not rely on this because future versions of Scheme will probably do away with
-this nonsense.
-Programmers accustomed to other dialects of Lisp should beware that Scheme
-has already done away with the nonsense that identifies the empty list with
-the symbol nil.
-
-# Ifalse
-.
-
-essential constant
-
-I flalse is the boolean value for falsity. The UIfalse object is self-
-
-evaluating. That is,
-it does not need to be quoted in programs.
-'#Ifalse
-
--->
-
-#!false
-
-Ifalse
-
--->
-
-U!false
-
-# Itrue
-
-essential constant
-# Itrue isthe boolean value for truth. The #Itrue object is self-evaluating,
-and does not need to be quoted in programs.
-(not obj)
-Returns #1true ifobi isfalse and returns
-
-essential procedure
-It
-false otherwise.
-
-nil
-t
-
-variable
-variable
 As a crutch for programmers accustomed to other dialects of Lisp, some
-implementations provide variables nil and t whose initial values are #Inull
-
-*
-
-.1
-
-.'
-•"-" *" . .
-
-".
-•. "•- • •" -"- 5'
-
-.. " -".
-
-"
-
-"
-
-"-
-
-°•
-
--
-
-o" -".-°.
-
-".
-
-'.
-
-"...
-
--"°-o
-
-. -"-
-
-- ," -t/
---.
-
-. -. .
-
-.
-
-.
-
-".
-
-*.
-
-. "
-
-e
-
-d
-
-The Revised Revised Report on Scheme
-
-33-
-
-and #1true respectively. These variables should not be relied upon in new
-code.
-
-.a,:
-
-24
-
-The Revised Revised Report on Scheme
-
-HI.3. Equivalence predicates
-A predicate is a procedure that always returns #I true or Il alse. Of the
-equivalence predicates described in this section, eq? is the most discriminating
-while equal? is the most liberal. eqv? is very slightly less discriminating
-than eq?.
-essential procedure
-(eq? objil obj2)
-Returns #1true if obi is identical in all respects to objf, otherwise returns #I false. If there is any way at all that a user can distinguish obi
-and obj2, then eq? will return #f false. On the other hand, it is guaranteed
-that objects maintain their identity despite being fetched from or stored into
-variables or data structures.
-The notion of identity used by eq? is stronger than the notions of equivalence
-used by the eqv? and equal? predicates. The constants V true and *If alse
-are identical to themselves and are different from everything else, except that
-in some implementations the empty list is identical to #Ifalse for historical
-reasons. Two symbols are identical if they print the same way (except that
-some implementations may have "uninterned symbols" that violate this rule).
-For structured objects such as pairs and vectors the notion of sameness is
-defined in terms of the primitive mutation procedures defined on those objects.
-For example, two pairs are the same if and only if a set-carI operation on
-one changes the car field of the other. The rules for identity of numbers are
-extremely implementation-dependent and should not be relied on.
-Generally speaking, the equal? procedure should be used to compare lists,
-vectors, and arrays. The char-? procedure should be used to compare characters, the string-? procedure should be used to compare strings, and the
--? procedure should be used to compare numbers. The eqv? procedure is
-just like eq? except that it can be used to compare characters and exact
-numbers as well. (See section 11.6 for a discussion of exact numbers.)
-
-a.
-
-%
-
-..-
-
-.....-
-
--
-
-.-
-
--..
-
-' ',-''-.''..''- ;.".-',..
-
-..,..---....**
-. . .
-
-°
-
-.%"*%
-
-.
-
-.
-
-#ltrue
-#Ifalse
-
-(eq? 'a 'a)
-(eq? 'a 'b)
-(eq? '(a) '(a))
-
--->
-
--->
-
-unspecified
-
-(eq? "a" "a")
-(eq? 2 2)
-(eq? (cons 'a 'b) (cons 'a 'b))
-(let ((x (read)))
-(eq? (cdr (cons 'b x)) x))
-
--->
-
-unspecified
-unspecified
-
-. .,
-..
-
--->
-
-....
-
--...........
-
-"'-",
-.~
-- " "%.'..,".
-
-."-"%
-
-'.'*.
-
-."
-
-',"
-
-".
-
--->
--->
-
-#lfalse
-
--->
-
-#ltrue
-
-,..".
-
-' ,' -
-
-.. '
-
-" .',.-.-.-,--.-.
-
-a-,".":
-
-"
-
-.*
-
-.".,-.
-
-"A ",A"
-*
-'
-
-.',-
-
-' '
-
--
-
-"
-
-The Revised Revised Report on Scheme
-
-25
-
-(eqv? objl obj2)
-essential procedure
-eqv? is just like eq? except that if objil and obj2 are exact numbers then
-eqv? is guaranteed to return #1 true if objil and obj2 are equil according to
-the -? procedure.
-(eq? 100000 100000)
-(eqv? 100000 100000)
-
--->
--->
-
-unspecified
-
-#1true
-
-See section 11.6 for a discussion of exact numbers.
-(equal? objil obj)
-essential procedure
-Returns C true if objil and obj* are identical objects or if they are equivalent numbera, lists, characters, strings, or vectors. Two objects are generally
-considered equivalent if they print the same. equal? may fail to terminate if
-its arguments are circular data structures.
-(equal?
-(equal?
-(equal?
-(equal?
-(equal?
-
-'a 'a)
-'(a) '(a))
-'(a (b) c) '(a (b) c))
-
--->
-
-#ttrue
-
--->
-
-#Itrue
-
--->
-
-"abc" "abc")
-
--->
-
-2 2)
-
--->
-
-#Itrue
-#Itrue
-#1true
-
--->
-
-Oltrue
-
-(equal? (make-vector 5 'a)
-(make-vector 6 'a))
-
-4"
-'S.
-
-'
-
-I
-
-.4
-
-The Revised Revised Report on Scheme
-
-26
+implementations provide variables nil and t whose initial values are
+`#!null` and `#!true` respectively. These variables should not be
+relied upon in new code.
+
+### II.3. Equivalence predicates
+
+A predicate is a procedure that always returns `#!true` or `#!false`.
+Of the equivalence predicates described in this section, `eq?` is the
+most discriminating while `equal?` is the most liberal. `eqv?` is very
+slightly less discriminating than eq?.
+
+(*eq?* _obj1_ _obj2_) [essential procedure]
+
+Returns `#!true` if _obj1_ is identical in all respects to _obj2_,
+otherwise returns `#!false`. If there is any way at all that a user
+can distinguish _obj1_ and _obj2_, then *eq?* will return `#!false`.
+On the other hand, it is guaranteed that objects maintain their
+identity despite being fetched from or stored into variables or data
+structures.
+
+The notion of identity used by *eq?* is stronger than the notions of
+equivalence used by the *eqv?* and *equal?* predicates. The constants
+`#!true` and `#!false` are identical to themselves and are different
+from everything else, except that in some implementations the empty
+list is identical to `#!false` for historical reasons. Two symbols are
+identical if they print the same way (except that some implementations
+may have "uninterned symbols" that violate this rule). For structured
+objects such as pairs and vectors the notion of sameness is defined in
+terms of the primitive mutation procedures defined on those objects.
+For example, two pairs are the same if and only if a *set-car!*
+operation on one changes the *car* field of the other. The rules for
+identity of numbers are extremely implementation-dependent and should
+not be relied on.
+
+Generally speaking, the *equal?* procedure should be used to compare
+lists, vectors, and arrays. The *char=?* procedure should be used to
+compare characters, the *string=?* procedure should be used to compare
+strings, and the *=?* procedure should be used to compare numbers. The
+*eqv?* procedure is just like *eq?* except that it can be used to
+compare characters and exact numbers as well. (See section II.6 for a
+discussion of exact numbers.)
+
+    (eq? 'a 'a) --> #!true
+    (eq? 'a 'b) --> #!false
+    (eq? '(a) '(a)) --> unspecified
+
+    (eq? "a" "a") --> unspecified
+    (eq? 2 2) --> unspecified
+    (eq? (cons 'a 'b) (cons 'a 'b)) --> #!false
+    (let ((x (read)))
+      (eq? (cdr (cons 'b x)) x))  --> #!true
+
+(*eqv?* _obj1_ _obj2_) [essential procedure]
+
+*eqv?* is just like *eq?* except that if _obj1_ and _obj2_ are exact
+*numbers then eqv?* is guaranteed to return `#!true` if _obj1_ and
+*_obj2_ are equal according to the *=?* procedure.
+
+    (eq? 100000 100000)     --> unspecified
+    (eqv? 100000 100000)    --> #!true
+
+See section II.6 for a discussion of exact numbers.
+
+(*equal?* _obj1_ _obj2_) [essential procedure]
+
+Returns `#!true` if _obj1_ and _obj2_ are identical objects or if they
+are equivalent numbers, lists, characters, strings, or vectors. Two
+objects are generally considered equivalent if they print the same.
+*equal?* may fail to terminate if its arguments are circular data
+structures.
+
+    (equal? 'a 'a)                  --> #!true
+    (equal? '(a) '(a))              --> #!true
+    (equal? '(a (b) c) '(a (b) c))  --> #!true
+    (equal? "abc" "abc")            --> #!true
+    (equal? 2 2)                    --> #!true
+    (equal? (make-vector 5 'a)
+            (make-vector 5 'a))     --> #!true
+
+----------------------------------------------------------------------
 
 11.4. Pairs and lists
 S.,
