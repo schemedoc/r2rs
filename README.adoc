@@ -121,9 +121,9 @@ have misinterpreted the authors or misjudged the consensus.
 
 William Clinger
 
-# Part I: Introduction to Scheme
+## Part I: Introduction to Scheme
 
-## I.0 Brief history of Scheme
+### I.0 Brief history of Scheme
 
 Scheme is a statically scoped and properly tail-recursive dialect of
 the Lisp programming language invented by Guy Lewis Steele Jr and
@@ -155,12 +155,12 @@ to several implementations. Scheme differs from Common Lisp in its
 emphasis upon simplicity and function over compatibility with older
 dialects of Lisp.
 
-## I.1 Syntax
+### I.1 Syntax
 
 Formal definitions of the lexical and context-free syntaxes of Scheme
 will be included in a separate report.
 
-### Identifiers
+#### Identifiers
 
 Most identifiers allowed by other programming languages are also
 acceptable to Scheme. The precise rules for forming identifiers vary
@@ -208,11 +208,11 @@ errors. The other school agrees only for special characters that come
 in pairs, on the grounds that errors involving only the unpaired
 special characters are easier to see.
 
-### Numbers
+#### Numbers
 
 For a description of the notations used for numbers, see section II.6.
 
-### Comments
+#### Comments
 
 A semicolon indicates the start of a comment. The comment continues to
 the end of the line on which the semicolon appears. Comments are
@@ -220,7 +220,7 @@ invisible to Scheme, but the end of the line is visible as whitespace.
 This prevents a comment from appearing in the middle of an identifier
 or number.
 
-### Other notations
+#### Other notations
 
 Left and right parentheses are used for grouping and to notate lists
 as described in section 11.4. Left and right square brackets and curly
@@ -244,7 +244,7 @@ followed by a backslash is used to notate characters as described in
 section II.7. A sharp sign followed by any of a number of letters is
 used in the notation for numbers as described in section II.6.
 
-### Context free grammar for Scheme
+#### Context free grammar for Scheme
 
 The following grammar is ambiguous because a `<special form>` looks
 like a `<procedure call>`. Some implementations resolve the ambiguity
@@ -270,7 +270,7 @@ of the special forms whose syntax is described in section II.1. For
 uniformity the other kinds of expressions are also described in that
 section as though they were special forms.
 
-## I.2 Semantics
+### I.2 Semantics
 
 A formal definition of the semantics of Scheme will be included in a
 separate report. The detailed informal semantics of Scheme is the
@@ -320,9 +320,9 @@ always pass arguments by value. Lazy ML passes arguments by name, so
 that an argument expression is evaluated only if its value is needed
 by the procedure.
 
-# Part II: A catalog of Scheme
+## Part II: A catalog of Scheme
 
-## II.0 Notational conventions
+### II.0 Notational conventions
 
 This part of the report is a catalog of the special forms and
 procedures that make up Scheme. The special forms are described in
@@ -386,7 +386,7 @@ such domain errors are seldom mentioned in this manual.
 Implementations may extend a procedure's domain of definition to
 include other arguments.
 
-## II.1. Special forms
+### II.1. Special forms
 
 Identifiers have two uses within Scheme programs. When an identifier
 appears within a quoted constant (see quote), it is being used as data
