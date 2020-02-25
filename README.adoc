@@ -3800,898 +3800,119 @@ Oo..
 
 67
 
-Bibliography and References
-
-*'
-
-.
+## Bibliography and References
 
 1. Harold Abelson and Gerald Jay Sussman with Julie Sussman, Structure
-and Interpretationof Computer Programs. MIT Press, Cambridge MA,
-1985.
-2. John Batali, Chris Hanson, Neil Mayle, Howard Shrobe, Richard M. Stallman, and Gerald Jay Sussman, The Scheme-81 Architecture-System
-and Chip. In Proceedings of the MIT Conference on Advanced Research
-in VLSI, Paul Penfield Jr [ed], Artech House, Dedham MA, 1982.
-3. William Clinger, The Scheme 311 Compiler: an Exercise in Denotational
-Semantics. In Conference Record of the 1984 ACM Symposium on Lisp
-and FunctionalProgramming,August 1984, pages 356-364.
-4. Carol Fessenden, William Clinger, Daniel P Friedman, and Christopher
-Haynes, Scheme 311 Version 4 Reference Manual. Indiana University
-Computer Science Technical Report 137, February 1983.
+and Interpretationof Computer Programs. MIT Press, Cambridge MA, 1985.
+
+2. John Batali, Chris Hanson, Neil Mayle, Howard Shrobe, Richard M.
+Stallman, and Gerald Jay Sussman, The Scheme-81 Architecture-System
+and Chip. In Proceedings of the MIT Conference on Advanced Research in
+VLSI, Paul Penfield Jr [ed], Artech House, Dedham MA, 1982.
+
+3. William Clinger, The Scheme 311 Compiler: an Exercise in
+Denotational Semantics. In Conference Record of the 1984 ACM Symposium
+on Lisp and FunctionalProgramming,August 1984, pages 356-364.
+
+4. Carol Fessenden, William Clinger, Daniel P Friedman, and
+Christopher Haynes, Scheme 311 Version 4 Reference Manual. Indiana
+University Computer Science Technical Report 137, February 1983.
+
 5. D Friedman, C Haynes, E Kohlbecker, and M Wand, Scheme 84 Interim
-Reference Manual. Indiana University Computer Science Technical Report 153, January 1985.
+Reference Manual. Indiana University Computer Science Technical Report
+153, January 1985.
+
 6. Daniel P Friedman and Christopher T Haynes, Constraining Control.
 In Proceedings of the Twelfth Annual ACM Symposium on Principles of
 ProgrammingLanguages, January 1985, pages 245-254.
-7. Christopher T Haynes, Daniel P Friedman, and Mitchell Wand, Continuations and coroutines. In Conference Record of the 1984 A CM Symposium
-on Lisp and FunctionalProgramming,August 1984, pages 293-298.
+
+7. Christopher T Haynes, Daniel P Friedman, and Mitchell Wand,
+Continuations and coroutines. In Conference Record of the 1984 A CM
+Symposium on Lisp and FunctionalProgramming,August 1984, pages
+293-298.
+
 8. Peter Landin, A Correspondence Between Algol 60 and Church's Lambda
 Notation: Part I. In Communications of the ACM, 8(2), February 1965,
 pages 89-101.
+
 9. Drew McDermott, An Efficient Environment Allocation Scheme in an
-Interpreter for a Lexically-scoped Lisp. In Conference Record of the 1980
-Lisp Conference, August 1980, pages 154-162.
+Interpreter for a Lexically-scoped Lisp. In Conference Record of the
+1980 Lisp Conference, August 1980, pages 154-162.
+
 10. Steven S Muchnick and Uwe F Pleban, A Semantic Comparison of Lisp
 and Scheme. In Conference Record of the 1980 Lisp Conference, August
 1980, pages 56-64.
+
 11. MIT Scheme Manual, Seventh Edition, September 1984.
-12. Peter Naur et al, Revised Report on the Algorithmic Language Algol 60.
-In Communications of the ACM, 6(1), January 1963, pages 1-17.
-13. Kent M Pitman, The Revised MacLisp Manual. MIT Artificial Intelligence Laboratory Technical Report 295, 21 May 1983 (Saturday Evening
-Edition).
 
-The Revised Revised Report on Scheme
+12. Peter Naur et al, Revised Report on the Algorithmic Language Algol
+60. In Communications of the ACM, 6(1), January 1963, pages 1-17.
 
-66
+13. Kent M Pitman, The Revised MacLisp Manual. MIT Artificial
+Intelligence Laboratory Technical Report 295, 21 May 1983 (Saturday
+Evening Edition).
 
 14. Jonathan A Rees and Norman I Adams IV, T: A Dialect of Lisp or,
 LAMBDA: The Ultimate Software Tool. In Proceedings of the 1982 A CM
 Symposium on Lisp and Functional Programming, August 1982, pages
 114-122.
+
 15. Jonathan A Rees, Norman I Adams IV, and James R Meehan, The T
 Manual. Fourth Edition, 10 January 1984.
-16. John Reynolds, Definitional Interpreters for Higher Order Programming
-Languages. In ACM Conference Proceedings, 1972, pages 717-740.
+
+16. John Reynolds, Definitional Interpreters for Higher Order
+Programming Languages. In ACM Conference Proceedings, 1972, pages
+717-740.
+
 17. Richard M Staliman, Phantom Stacks-If You Look Too Hard, They
 Aren't There. MIT Artificial Intelligence Memo 556, July 1980.
+
 18. Guy Lewis Steele Jr, and Gerald Jay Sussman, Lambda, the Ultimate
 Imperative. MIT Artificial Intelligence Memo 353, March 1976.
-19. Guy Lewis Steele Jr, Lambda, The Ultimate Declarative. MIT Artificial
-Intelligence Memo 379, November 1976.
-20. Guy Lewis Steele Jr, Debunking the "Expensive Procedure Call" Myth,
-or Procedure Call Implementations Considered Harmful, or Lambda, The
-Ultimate GOTO. In A CM Conference Proceedings, 1977, pages 153-162.
+
+19. Guy Lewis Steele Jr, Lambda, The Ultimate Declarative. MIT
+Artificial Intelligence Memo 379, November 1976.
+
+20. Guy Lewis Steele Jr, Debunking the "Expensive Procedure Call"
+Myth, or Procedure Call Implementations Considered Harmful, or Lambda,
+The Ultimate GOTO. In A CM Conference Proceedings, 1977, pages
+153-162.
+
 21. Guy Lewis Steele Jr, Rabbit: a Compiler for Scheme. MIT Artificial
 Intelligence Laboratory Technical Report 474, May 1978.
-22. Guy Lewis Steele Jr, An overview of Common Lisp. In Conference Record
-of the 1982 ACM Symposium on Lisp and FunctionalProgramming,August 1982, pages 98-107.
-23. Guy Lewis Steele Jr, Common Lisp: the Language. Digital Press, 1984.
-24. Guy Lewis Steele Jr and Gerald Jay Suisnan, The revised report on
-Scheme, a dialect of Lisp. MIT Artificial Intelligence Memo 452, January
-1978.
-25. Guy Lewis Steele Jr and Gerald Jay Sussman, The Art of the Interpreter,
-or The Modularity Complex (Parts Zero, One, and Two). MIT Artificial
-Intelligence Memo 453, May 1978.
-26. Guy Lewis Steele Jr and Gerald Jay Sussman, Design of a Lisp>-Based
-Processor. In Communications of the ACM, 23(11), November 1980,
-pages 628-645.
-27. Guy Lewis Steele Jr and Gerald Jay Sussman, The Dream of a Lifetime:
-A Lazy Variable Extent Mechanism. In Conference Record of the 1950
-Lisp Conference, August 1980, pages 163-172.
+
+22. Guy Lewis Steele Jr, An overview of Common Lisp. In Conference
+Record of the 1982 ACM Symposium on Lisp and
+FunctionalProgramming,August 1982, pages 98-107.
+
+23. Guy Lewis Steele Jr, Common Lisp: the Language. Digital Press,
+1984.
+
+24. Guy Lewis Steele Jr and Gerald Jay Sussman, The revised report on
+Scheme, a dialect of Lisp. MIT Artificial Intelligence Memo 452,
+January 1978.
+
+25. Guy Lewis Steele Jr and Gerald Jay Sussman, The Art of the
+Interpreter, or The Modularity Complex (Parts Zero, One, and Two). MIT
+Artificial Intelligence Memo 453, May 1978.
+
+26. Guy Lewis Steele Jr and Gerald Jay Sussman, Design of a
+Lisp>-Based Processor. In Communications of the ACM, 23(11), November
+1980, pages 628-645.
+
+27. Guy Lewis Steele Jr and Gerald Jay Sussman, The Dream of a
+Lifetime: A Lazy Variable Extent Mechanism. In Conference Record of
+the 1950 Lisp Conference, August 1980, pages 163-172.
+
 28. Gerald Jay Sussman and Guy Lewis Steele Jr, Scheme: an Interpreter
 for Extended Lambda Calculus. MIT Artificial Intelligence Memo 349,
 December 1975.
 
-%,
-
-'.WW
-
-69
-
-The Revised Revised Report on Scheme
-
-29. Gerald Jay Suasman, Jack Holloway, Guy Lewis Steele Jr, and Alan Bell,
-Scheme-79-Lisp on a chip. In IEEE Computer, 14(7), July 1981, pages
-10-21.
-30. Mitchell Wand, Continuation-based Program Transformation Strategies.
-In Journal of the ACM, 27(1), 1978, pages 174-180.
-31. Mitchell Wand, Continuation-based Multiprocessing. In Conference Record
-of the 1980 Lisp Conference, August 1978, pages 19-28.
-
-SI.
-4.
-
-4
-
-.4.A
-
-°a~
-
-.o
-
-.,
-
-4
-
-,
-
-"%
-
-,
-
--
-
-"
-
-"
-
-,.
-
-.-
-
-:
-
-'
-
-.
-
-'"
-
-"
-
-°
-
-e
-
-"
-
-"
-
-'-
-
--
-
-.
-
-,-•
-
--
-
-"
-
-"
-
-"
-
-"
-
-•4
-
-:
-
-%
-
-"-
-
-70
-
-The Revised Revised Report on Scheme
-
-Index
-* Ifalse
-I null
-0 1true
-
-22
-29
-22
-12
-
-+
-
-39
-39
-
-/
-
-39
-
-1+
-
-39
-
-<
-
-38
-38
-
-1+
-
-<=
-<=?
-
-38
-38
-38
-
--. 7
-
-=?
->
-
-38
-38
-38
-
->=
-
-38
-
->?
-
-38
-20
-39
-41
-
-abe
-Wcoo
-
-and
-*angle
-append
-append!
-apply
-auin
-asoc
-ausq
-
-'awy
-&tan
-backquote
-begin
-binding construct
-bound
-caaaar
-
-is
-41
-30
-30
-57
-41
-31
-31
-31
-41
-20
-19
-11
-11
-28
-
-0
-0
-
-%1
-
-'I
-
-4d
-
-%
-
-The Revised Revised Report on Scheme
-caaadr
-caaar
-caadar
-*caaddr
-*
-
-T
-
-28
-28
-28
-29
-28
-
-acaadr
-
-caar
-cadaar
-cadadr
-cadar
-caddar
-cadddr
-caddr
-cadr
-call-with-current-continuation
-call-with-input-file
-call-with-output-file
-car
-case
-cdaaar
-cdaadr
-cdaar
-cdadar
-cdaddr
-cdadr
-cdar
-cddaar
-cddadr
-cddar
-cdddar
-cddddr
-cdddr
-cddr
-cdr
-ceiling
-char->integer
-char-alphabetic?
-char-ci<=?
-char-ci<?
-char-ci=?
-char-ci>=?
-
-j.*
-
-28
-29
-29
-28
-29
-29
-28
-28
-58
-61
-61
-28
-14
-29
-29
-28
-29
-29
-28
-28
-29
-29
-28
-29
-29
-28
-28
-28
-40
-49
-49
-49
-49
-49
-49
-
-The Revised Revised Report on Scheme
-
-72
-
-char-ci>?
-char-downcase
-char-lower-case?
-char-numeric?
-char-ready?
-char-upeam
-char-upper-cms?
-char-whitespace?
-char<=?
-
-*
-
-49
-50
-49
-49
-63
-so
-49
-49
-48
-char<?
-
-48
-48
-48
-48
-48
-62
-
-comment
-complex?
-cons
-constant
-
-6
-37
-14
-27
-9
-
-coo
-
-41
-
-current-input-port
-current-output-port
-
-61
-61
-
-define
-display
-do
-else
-empty list
-
-11
-63
-
-eq?
-equal?
-
-24
-25
-
-eqv?
-essential
-
-25
-9
-
-even?
-
-38
-
-exact->inexact
-
-41
-
-exact?
-
-38
-
-numbers
-
-*exactness
-
-4%
-
-f
-
-17,18
-65
-19
-14,15
-26
-
-environment
-*eof-object?
-
-Bexact
-
-48
-
-char=?
-char>=?
-char>?~
-char?
-charnpt-or
-close-input-port
-
-*cond
-
-f
-
-36
-47
-
-f
-
-D"
-
-The Revised Revised Report on Scheme
-
-exp
-expt
-false
-fix
-fno
-floor
-for-each
-formats
-gcd
-heur
-identifier
-if
-imag-part
-inexact numbers
-inexact->exact
-inexact?
-input-port?
-
-41
-41
-22
-46
-46
-40
-58
-44
-40
-47
-5
-13
-41
-36
-41
-38
-61
-
-imt
-
-48
-
-integer->char
-integer?
-keyword
-lambda
-last-pair
-*1cm
-length
-let
-let*
-letrec
-list
-list
-list->string
-
-%*1
-
-78
-
-49
-37
-11
-12,13
-31
-40
-30
-15
-16
-16
-29
-27
-53
-
-list->vector
-list-ref
-list-tail
-
-55
-30
-30
-
-load
-
-64
-
-log
-macros
-magnitude
-make-polar
-make-rectangular
-
-41
-20
-41
-41
-41
-
-7
-
-71 if
-
-The Revised Revised Report on Scheme
-
-*
-
-,4
-
-74
-
-make-string
-make-vector
-map
-max
-member
-memq
-memv
-rn
-modulo
-named-lambda
-negative?
-newline
-nil
-not
-null?
-number->string
-number?
-object-hash
-object-unhash
-odd?
-open-input-file
-open-output-file
-or
-
-52
-54
-57
-38
-31
-31
-31
-38
-39
-17
-38
-64
-22
-22
-29
-44
-37
-56
-56
-38
-62
-62
-15
-
-output-port?
-
-61
-
-pair
-
-26
-27
-47
-38
-45
-9
-12
-26
-12
-39
-47
-46
-37
-40
-64
-63
-
-pair?
-polar
-positive?
-precision
-p
-procedure
-procedure call
-proper list
-quote
-quotient
-radix
-rat
-rational?
-rationalize
-read
-read-char
-
-4."
-
-,-
-
-%%
-
-....
-,,.,.,,
-:,
-. .,S,,. .. ...
-...
-.,.*...
-,..
-.,.
-.. ....
-... ..
--5*, ,.,, ........ h.
-
-|,
-
-*.
-
-t*,
-
-.*|~~*
-
-S'SS555S
-
-T
-
-The Revised Revised Report on Scheme
-
-real-part
-real?
-rec
-*rect
-region
-remainder
-reverse
-round
-mci
-sequence
-set!
-set-car!
-set-cdrI
-signal an error
-sin
-special form
-sqrt
-string->list
-string->number
-string->symbol
-string-append
-strimg-ci<=?
-string-ci<?
-
-stringci=IL5
-
-41
-37
-17
-46
-11
-39
-30
-40
-46
-19
-18
-28
-28
-10
-41
-9,11
-41
-53
-44
-34
-53
-52
-52
-
-string-ci=?
-strmng-ci>?
-
-52
-52
-
-string-copy
-string-fiII!
-string-length
-string-null?
-string-ref
-string-set!
-string<=?
-
-53
-53
-52
-51
-52
-53
-52
-
-string<c?
-
-52
-
-string=?
-string>=?
-string>?
-string?
-substring
-substring-fill!
-
-52
-52
-52
-51
-52
-53
-
-The Revised Revised Report on Scheme
-
-substring-move-left!
-
-53
-
-substring-move-right!
-symbol->string
-symbol?
-t
-
-53
-34
-33
-22
-
-tan
-
-41
-66
-66
-22
-
-*transcript-off
-transcript-on
-true
-
-b.
-
-76
-
-truncate
-unbound variable
-variable
-vector
-vector->list
-'avector-fill!
-
-vector-length
-vector-ref
-vector-set
-vector?
-with-input-from-file
-with-output-to-file
-write
-write-char
-zero?
-
-40
-11
-9,11
-54
-55
-55
-54
-54
-54
-54
-61
-61
-65
-65
-38
-
-%
-
-5,
-
-'-5
-
-FILMED
-10-85
-
-DTIC
-
-
+29. Gerald Jay Suasman, Jack Holloway, Guy Lewis Steele Jr, and Alan
+Bell, Scheme-79-Lisp on a chip. In IEEE Computer, 14(7), July 1981,
+pages 10-21.
+
+30. Mitchell Wand, Continuation-based Program Transformation
+Strategies. In Journal of the ACM, 27(1), 1978, pages 174-180. 31.
+Mitchell Wand, Continuation-based Multiprocessing. In Conference
+Record of the 1980 Lisp Conference, August 1978, pages 19-28.
