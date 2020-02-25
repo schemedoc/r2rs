@@ -3315,10 +3315,11 @@ need them should provide them.
 ## Bibliography and References
 
 1. Harold Abelson and Gerald Jay Sussman with Julie Sussman, Structure
-and Interpretationof Computer Programs. MIT Press, Cambridge MA, 1985.
+and Interpretation of Computer Programs. MIT Press, Cambridge MA,
+1985.
 
 2. John Batali, Chris Hanson, Neil Mayle, Howard Shrobe, Richard M.
-Stallman, and Gerald Jay Sussman, The Scheme-81 Architecture-System
+Stallman, and Gerald Jay Sussman, The Scheme-81 Architecture -- System
 and Chip. In Proceedings of the MIT Conference on Advanced Research in
 VLSI, Paul Penfield Jr [ed], Artech House, Dedham MA, 1982.
 
