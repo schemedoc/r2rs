@@ -1145,33 +1145,33 @@ Stores _obj_ in the cdr field of _pair_. _pair_ must be a pair. The
 value returned by *set-cdr!* is unspecified. This procedure can be
 very confusing if used indiscriminately.
 
-(*caar* _pair_) [essential procedure]
-(*cadr* _pair_) [essential procedure]
-(*cdar* _pair_) [essential procedure]
-(*cddr* _pair_) [essential procedure]
-(*caaar* _pair_) [essential procedure]
-(*caadr* _pair_) [essential procedure]
-(*cadar* _pair_) [essential procedure]
-(*caddr* _pair_) [essential procedure]
-(*cdaar* _pair_) [essential procedure]
-(*cdadr* _pair_) [essential procedure]
-(*cddar* _pair_) [essential procedure]
-(*cdddr* _pair_) [essential procedure]
-(*caaaar* _pair_) [essential procedure]
-(*caaadr* _pair_) [essential procedure]
-(*caadar* _pair_) [essential procedure]
-(*caaddr* _pair_) [essential procedure]
-(*cadaar* _pair_) [essential procedure]
-(*cadadr* _pair_) [essential procedure]
-(*caddar* _pair_) [essential procedure]
-(*cadddr* _pair_) [essential procedure]
-(*cdaaar* _pair_) [essential procedure]
-(*cdaadr* _pair_) [essential procedure]
-(*cdadar* _pair_) [essential procedure]
-(*cdaddr* _pair_) [essential procedure]
-(*cddaar* _pair_) [essential procedure]
-(*cddadr* _pair_) [essential procedure]
-(*cdddar* _pair_) [essential procedure]
+(*caar* _pair_) [essential procedure] +
+(*cadr* _pair_) [essential procedure] +
+(*cdar* _pair_) [essential procedure] +
+(*cddr* _pair_) [essential procedure] +
+(*caaar* _pair_) [essential procedure] +
+(*caadr* _pair_) [essential procedure] +
+(*cadar* _pair_) [essential procedure] +
+(*caddr* _pair_) [essential procedure] +
+(*cdaar* _pair_) [essential procedure] +
+(*cdadr* _pair_) [essential procedure] +
+(*cddar* _pair_) [essential procedure] +
+(*cdddr* _pair_) [essential procedure] +
+(*caaaar* _pair_) [essential procedure] +
+(*caaadr* _pair_) [essential procedure] +
+(*caadar* _pair_) [essential procedure] +
+(*caaddr* _pair_) [essential procedure] +
+(*cadaar* _pair_) [essential procedure] +
+(*cadadr* _pair_) [essential procedure] +
+(*caddar* _pair_) [essential procedure] +
+(*cadddr* _pair_) [essential procedure] +
+(*cdaaar* _pair_) [essential procedure] +
+(*cdaadr* _pair_) [essential procedure] +
+(*cdadar* _pair_) [essential procedure] +
+(*cdaddr* _pair_) [essential procedure] +
+(*cddaar* _pair_) [essential procedure] +
+(*cddadr* _pair_) [essential procedure] +
+(*cdddar* _pair_) [essential procedure] +
 (*cddddr* _pair_) [essential procedure]
 
 These procedures are compositions of *car* and *cdr*, where for
