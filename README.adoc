@@ -1037,7 +1037,7 @@ notations permit a structure to be written without any dotted pair
 notation at all. For example
 
 ----
-(a . (b . (c . (d . (e. ())))))
+(a . (b . (c . (d . (e . ())))))
 ----
 
 would normally be written as `(a b c d e)`.
