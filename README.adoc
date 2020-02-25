@@ -1565,25 +1565,25 @@ returning `#!true` or `#!false`.
 ----------------------------------------------------------------------
 
 (= z1 z2)
-essential procedure
+[essential procedure]
 z(1?z2)
-essential procedure
+[essential procedure]
 (< z: z2)
-essential procedure
+[essential procedure]
 (<? z: z2)
-essential procedure
+[essential procedure]
 (> z: X2)
-essential procedure
+[essential procedure]
 (>? z1 X2)
-essential procedure
+[essential procedure]
 (<= z1 z2)
-essential procedure
+[essential procedure]
 (<=? z1 z2)
-essential procedure
+[essential procedure]
 (>= x1 2)
-essential procedure
+[essential procedure]
 (>=? z1 z2)
-essential procedure
+[essential procedure]
 These numerical comparison predicates have redundant names (with and
 without the terminal '?")
 
@@ -1601,7 +1601,7 @@ when in doubt, consult a numerical analyst.
 1 z2) ...
 (max :1 2
 
-essential procedure
+[essential procedure]
 procedure
 
 )
@@ -1616,7 +1616,7 @@ C..
 ,,'
 ,,......*.
 
-essential procedure
+[essential procedure]
 procedure
 
 *.
@@ -1630,11 +1630,11 @@ Returns the maximum or minimum of its arguments, respectively.
 
 zi z)
 
-essential procedure
+[essential procedure]
 procedure
 (+ zl ... )
 ( * z1 z2)
-essential procedure
+[essential procedure]
 (S zi ... )
 procedure
 These procedures return the sum or product of their arguments.
@@ -1680,14 +1680,14 @@ z1
 
 S.
 
-essential procedure
+[essential procedure]
 
 :2...)
 
 procedure
 
 S(/zlz)
-essential procedure
+[essential procedure]
 (V z1 z2 ... )
 procedure
 With two or more arguments, these procedures return the difference or
@@ -1732,7 +1732,7 @@ their argument.
 (abs )
 Returns the magnitude of its argument.
 
-essential procedure
+[essential procedure]
 
 (abs-)
 
@@ -1747,9 +1747,9 @@ essential procedure
 ,
 
 (quotient nI n)
-essential procedure
+[essential procedure]
 (remainder n1 n2S)
-essential procedure
+[essential procedure]
 (modulo n1 n2)
 procedure
 In general, these are intended to implement number-theoretic (integer)
@@ -2409,18 +2409,18 @@ suffix "-ci' (for *case insensitive"). If the operation is a predicate, then the
 
 obj)
 
-essential procedure
+[essential procedure]
 Returns #!true if obj is a character, otherwise returns #!false.
 (char=? char1 chart)
-essential procedure
+[essential procedure]
 (char<? char1 chart)
-essential procedure
+[essential procedure]
 (char>? chari char2)
-essential procedure
+[essential procedure]
 (char<=? chari chart)
-essential procedure
+[essential procedure]
 (char>=? charI char2)
-essential procedure
+[essential procedure]
 Both chari and char2 must be characters. These procedures impose
 a total ordering on the set of characters. It is guaranteed that under this
 ordering:
@@ -2490,10 +2490,10 @@ The alphabetic characters are the 52 upper and lower case letters. The numeric c
 line feed, form feed, carriage return, and space.
 (char->Integer char)
 
-essential procedure
+[essential procedure]
 
 (integer->char n)
-essential procedure
+[essential procedure]
 Given a character, char->integer returns an integer representation of
 the character. Given an integer that is the image of a character under char>integer, Integer->char returns a character. These procedures implement
 order isomorphisns between the set of characters under the char<=? ordering
@@ -2590,12 +2590,12 @@ precedes the "?" at the end of the name.
 
 obj)
 
-essential procedure
+[essential procedure]
 
 Returns `#!true` if obi is a string, otherwise returns `#!false`.
 (string-nullstring)
 
-essential procedure
+[essential procedure]
 
 string must be a string. Returns #1 true if string has zero length, otherwise returns `#!false`.
 
@@ -2606,14 +2606,14 @@ string must be a string. Returns #1 true if string has zero length, otherwise re
 
 The Revised Revised Report on Scheme
 
-essential procedure
+[essential procedure]
 (string=? stringi string2)
 procedure
 (string-ci=? stringl stringf)
 Returns # true if the two strings are the same length and contain the
 same characters in the same positions, otherwise returns `#!false`. stringci-? treats upper and lower case letters as though they were the same character, but string-? treats upper and lower case as distinct characters.
 
-essential procedure
+[essential procedure]
 
 etringi string)
 
@@ -2622,10 +2622,10 @@ etringi string)
 (string>? stringl string)
 (string<=? string string2)
 
-essential procedure
-essential procedure
+[essential procedure]
+[essential procedure]
 
-essential procedure
+[essential procedure]
 (string>=? stringl string2)
 procedure
 (string-c<? stringi string2)
@@ -2647,16 +2647,16 @@ n must be a non-negative integer, and char must be a character. Returns
 a newly allocated string of length n. If char is given, then all elements of
 the string are initialized to char, otherwise the contents of the string are
 unspecified.
-essential procedure
+[essential procedure]
 
 (string-length string)
 
 Returns the number of characters in the given string.
-essential procedure
+[essential procedure]
 (string-ref string n)
 n must be a nonnegative integer less than the string-length of string.
 Returns character n using zero-origin indexing.
-essential procedure
+[essential procedure]
 (substring string start end)
 string must be a string, and start and end must be valid indexes of string
 with start <- end. Returns a newly allocated string formed from the characters
@@ -2669,16 +2669,16 @@ AL
 The Revised Revised Report on Scheme
 
 (string-append etringl string2)
-essential procedure
+[essential procedure]
 procedure
 (string-append etringi ...
 )
 Returns a new string whose characters form the catenation of the given
 strings.
-essential procedure
+[essential procedure]
 (string->llst string)
 (list->string chars)
-essential procedure
+[essential procedure]
 string->list returns a list of the characters that make up the given
 string. list->string returns a string formed from the proper list of characters chars. string->list and list->string are inverses so far as equal?
 is concerned. Implementations that provide destructive operations on strings
@@ -2741,13 +2741,13 @@ are accessed and assigned by the procedures vector-ref and vector-set 1.
 
 obj)
 
-essential procedure
+[essential procedure]
 
 Returns `#!true` if obj isa vector, otherwise returns `#!false`.
 (make-vector size)
 (make-vector size fill)
 
-essential procedure
+[essential procedure]
 procedure
 
 Returns a newly allocated vector of size elements. If a second argument
@@ -2755,7 +2755,7 @@ is given, then each element is initialized to fidL Otherwise the initial content
 of each element is unspecified.
 (vector obj
 
-essential procedure
+[essential procedure]
 
 ... )
 
@@ -2768,12 +2768,12 @@ Returns a newly allocated vector whose elements contain the given arguments. Ana
 
 (vector-length vec)
 
-essential procedure
+[essential procedure]
 
 Returns the number of elements in the vector vec.
 (vector-ref wee k)
 
-essential procedure
+[essential procedure]
 
 Returns the contents of element k of the vector vec. k must be a nonnegative integer less than (vector-length wec).
 (vector-ref '#(1 1 2 3 5 8 13 21) 6) -->
@@ -2782,7 +2782,7 @@ Returns the contents of element k of the vector vec. k must be a nonnegative int
 
 8
 
-essential procedure
+[essential procedure]
 
 Stores obi in element k of the vector ee. k must be a nonnegative integer
 less than (vector-length wc). The value returned by vector-set I is not
@@ -2803,7 +2803,7 @@ S("Sue" "Sue")
 "Anna")L
 
 (vector->list tvec)
-essential procedure
+[essential procedure]
 Returns a list of the objects contained in the elements of vec. See
 list->vector.
 (vector-list '6 (dali dali didali))
@@ -2813,7 +2813,7 @@ list->vector.
 (dali dali didali)
 
 (llut->vector elts)
-essential procedure
+[essential procedure]
 Returns a newly created vector whose elements are initialized to the
 elements of the proper list cit..
 (liat->vector '(dididit dali))
@@ -2876,7 +2876,7 @@ The most common thing to do with a procedure is to call it with zero or more
 arguments. A Scheme procedure may also be stored in data structures or
 passed as an argument to procedures such as those described below.
 (apply proc args)
-essential procedure
+[essential procedure]
 (apply proc argl ... args)
 procedure
 proc must be a procedure and args must be a proper list of arguments.
@@ -2904,7 +2904,7 @@ unspecified
 13
 
 (map f phiet)
-essential procedure
+[essential procedure]
 (map f plietl pliat2 ... )
 procedure
 f must be a procedure of one argument and the plists must be proper
@@ -2953,7 +2953,7 @@ un.pecified
 
 55
 
-essential procedure
+[essential procedure]
 procedure
 
 ... )
@@ -2970,7 +2970,7 @@ v)
 -#(0 1 4 9 16)
 (call-with-current-continuation 1)
 
-essential procedure
+[essential procedure]
 
 f must be a procedure of one argument. call-with-current-continuation
 packages up the current continuation (see the Rationale below) as an "escape
@@ -3079,9 +3079,9 @@ Ports represent input and output devices. To Scheme, an input device is
 a Scheme object that can deliver characters upon command, while an output
 device is a Scheme object that can accept characters.
 (call-with-Input-file string proc)
-essential procedure
+[essential procedure]
 (call-with-output-file string proc)
-essential procedure
+[essential procedure]
 Proc is a procedure of one argument, and string is a string naming a
 file. For call-with-input-file, the file must already exist; for call-withoutput-file, the effect is unspecified if the file already exists. Calls proc
 with one argument: the port obtained by opening the named file for input or
@@ -3103,17 +3103,17 @@ or call-with-output-port.
 *
 
 (input-port? obj)
-essential procedure
+[essential procedure]
 (output-port? obj)
-essential procedure
+[essential procedure]
 Returns `#!true` if obi is an input port or output port (respectively),
 otherwise returns #false.
 (current-nput-port)
 (current-output-port)
 Returns the current default input or output port.
 
-essential procedure
-essential procedure
+[essential procedure]
+[essential procedure]
 
 (with-Input-from-file string thunk)
 procedure
@@ -3180,15 +3180,15 @@ are described in the sections devoted to the operations on those objects.
 I
 
 (eof-object? obj)
-essential procedure
+[essential procedure]
 Returns * Itrue if o bj is an end of file object, otherwise returns `#!false`.
 The precise set of end of file objects will vary among implementations, but in
 any case no end of file object will ever be a character or an object that can
 be read in using read.
 (read)
-essential procedure
+[essential procedure]
 (read port)
-essential procedure
+[essential procedure]
 Returns the next object parsable from the given input port, updating port
 to point to the first character past the end of the written representation of the
 object. If an end of file is encountered in the input before any characters are
@@ -3203,8 +3203,8 @@ middle of an object.
 (read-char)
 (read-char port)
 
-essential procedure
-essential procedure
+[essential procedure]
+[essential procedure]
 
 Returns the next character available from the input port, updating the
 port to point to the following character. If no more characters are available,
@@ -3234,7 +3234,7 @@ rubout handlers associated with such ports must ensure that characters whose
 existence has been asserted by char-ready? cannot be rubbed out. If charready? were to return #1Ifalse at end of file, a port at end of file would be
 indistinguishable from an interactive port that has no ready characters.
 (load filename)
-essential procedure
+[essential procedure]
 filename should be a string naming an existing file containing Scheme
 source code. The load procedure reads expressions from the file and evaluates
 them sequentially as though they had been typed interactively. It is not
@@ -3254,17 +3254,17 @@ The Revised Revised Report on Scheme
 
 11.14. Output
 (write obj)
-essential procedure
+[essential procedure]
 (write obj port)
-essential procedure
+[essential procedure]
 Writes a representation of o6j to the given port. Strings that appear in the
 written representation are enclosed in doublequotes, and within those strings
 backslash and doublequote characters are escaped by backslashes. write returns an unspecified value. The port argument may be omitted, in which case
 it defaults to the value returned by current-output-port. See display.
 (display obj)
-essential procedure
+[essential procedure]
 (display obj port)
-essential procedure
+[essential procedure]
 Writes a representation of obj to the given port. Strings that appear in
 the written representation are not enclosed in doublequotes, and no characters
 are escaped within those strings, display returns an unspecified value. The
@@ -3274,17 +3274,17 @@ Rationale: Like Common Lisp's prinl and princ, write is for producing
 machine-readable output and display is for producing human-readable output. Implementations that allow "slashification" within symbols will probably
 want write but not display to slashify funny characters in symbols.
 (newline)
-essential procedure
+[essential procedure]
 (newline port)
-essential procedure
+[essential procedure]
 Writes an end of line to port. Exactly how this is done differs from
 one operating system to another. Returns an unspecified value. The port
 argument may be omitted, in which case it defaults to the value returned by
 current -output-port.
 (write-char char)
-essential procedure
+[essential procedure]
 (write-char char port)
-essential procedure
+[essential procedure]
 Writes the character char (not a written representation of the character)
 to the given port and returns an unspecified value. The port argument may be
 omitted, in which case it defaults to the value returned by current-outputport.
