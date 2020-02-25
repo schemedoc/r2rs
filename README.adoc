@@ -1320,383 +1320,251 @@ _Rationale_: *memq*, *memv*, *member*, *assq*, *assv*, and *assoc* do
 not have question marks in their names because they return useful
 values rather than just `#!true`.
 
-----------------------------------------------------------------------
+### II.5. Symbols
 
-The Revised Revised Report on Scheme
+Symbols are objects whose usefulness rests entirely on the fact that
+two symbols are identical (in the sense of *eq?*) if and only if their
+names are spelled the same way. This is exactly the property needed to
+represent identifiers in programs, and so most implementations of
+Scheme use them internally for that purpose. Programmers may also use
+symbols as they use enumerated values in Pascal.
 
-33
+The rules for writing a symbol are the same as the rules for writing
+an identifier (see section I.2). As with identifiers, different
+implementations of Scheme use slightly different rules, but it is
+always the case that a sequence of characters that contains no special
+characters and begins with a character that cannot begin a number is
+taken to be a symbol; in addition +, - 1+, and -1+ are symbols.
 
-11.5. Symbols
-Symbols are objects whose usefulness rests entirely on the fact that two
-symbols are identical (in the sense of eq?) if and only if their names are spelled
-the same way. This is exactly the property needed to represent identifiers in
-programs, and so most implementations of Scheme use them internally for
-that purpose. Programmers may also use symbols as they use enumerated
-values in Pascal.
-The rules for writing a symbol are the same as the rules for writing an identifier
-(see section 1.2). As with identifiers, different implementations of Scheme use
-slightly different rules, but it is always the case that a sequence of characters
-that contains no special characters and begins with a character that cannot
-begin a number is taken to be a symbol; in addition +, - 1+, and -1+ are
-symbols.
-The case in which a symbol is written is unimportant. Some implementations
-of Scheme convert any upper case letters to lower case, and others convert
-lower case to upper case.
+The case in which a symbol is written is unimportant. Some
+implementations of Scheme convert any upper case letters to lower
+case, and others convert lower case to upper case.
 
-"
+It is guaranteed that any symbol that has been read using the *read*
+procedure and subsequently written out using the *write* procedure
+will read back in as the identical symbol (in the sense of *eq?*). The
+*string->symbol* procedure, however, can create symbols for which this
+write/read invariance may not hold because their names contain special
+characters or letters in the non-standard case.
 
-It is guaranteed that any symbol that has been read using the read procedure
-and subsequently written out using the write procedure will read back in as
-the identical symbol (in the sense of eq?). The string->symbol procedure,
-however, can create symbols for which this write/read invariance may not hold
-because their names contain special characters or letters in the non-standard
-case.
-Rationale: Some implementations of Lisp have a feature known as "slashification' in order to guarantee write/read invariance for all symbols, but historically the most important use of this feature has been to compensate for the
-lack of a string data type. Some implementations have "uninterned symbols,
-which defeat write/read invariance even in implementations with slashification and also generate exceptions to the rule that two symbols are the same if
-and only if their names are spelled the same. It is questionable whether these
-features are worth their complexity, so they are not standard in Scheme.
-(symbol? obj)
-essential procedure
-Returns #I true if obj is a symbol, otherwise returns `#!false`.
-(symbol? 'foo)
-(symbol? (car '(a b)))
-(symbol? "bar")
+_Rationale_: Some implementations of Lisp have a feature known as
+"slashification" in order to guarantee write/read invariance for all
+symbols, but historically the most important use of this feature has
+been to compensate for the lack of a string data type. Some
+implementations have "uninterned symbols", which defeat write/read
+invariance even in implementations with slashification and also
+generate exceptions to the rule that two symbols are the same if and
+only if their names are spelled the same. It is questionable whether
+these features are worth their complexity, so they are not standard in
+Scheme.
 
--->
--->
+(*symbol?* _obj_) [essential procedure]
 
-`#!true`
-`#!true`
+Returns `#!true` if _obj_ is a symbol, otherwise returns `#!false`.
 
--->
+----
+(symbol? 'foo)         --> #!true
+(symbol? (car '(a b))) --> #!true
+(symbol? "bar")        --> #!false
+----
 
-`#!false`
+(*symbol->string* _symbol_) [essential procedure]
 
-a.:
+Returns the name of _symbol_ as a string. *symbol->string* performs no
+case conversion. See *string->syabol*. The following examples assume
+the read procedure converts to lower case:
 
-a..
-
-* %
-*
-
-*J"
-
-"." 2' 2:" ".2,""."".'
-" ", " "0'..%...,,,
-","".''",'"" . . '. '... ., ,..
-
--.-
-
-pa,
-
-' ... " .', .''.'.."-.",,' ., .,"..'
-
-".'-
-
-" .', 5 ,
-
-,"
-
-"
-
-"' "' "' " ".
-
-."
-
-*,"'-
-
-*
-
-.0The
-
-.,.~t
-.
-
-.
-
-N
-
-.t
-
--
-
--T7.
-
-Revised Revised Report on Scheme
-
-34
-
-(symbol->string symbol)
-essential procedure
-Returns the name of symbol as a string. symbol->string performs no
-case conversion. See string->syabol. The following examples assume the
-read procedure converts to lower case:
-(symbol->string 'flying-fish)
-(symbol->string 'Martin)
+----
+(symbol->string 'flying-fish)       --> "flying-fish"
+(symbol->string 'Martin)            --> "martin"
 (symbol->string
-(string->symbol "Malvina"))
+ (string->symbol "Malvina"))        --> "Malvina"
+----
 
-- ->
+(*string->symbol* _string_) [essential procedure]
 
-"flying-fish"
-"Martin"
+Returns the symbol whose name is _string_. *string->symbol* can create
+symbols with special characters or letters in the non-standard case,
+but it is usually a bad idea to create such symbols because in some
+implementations of Scheme they cannot be read as themselves. See
+*symbol->string*.
 
--->
+----
+'mISSISSIppi                        --> mississippi
+(string->symbol mISSISSIppi")       --> mISSISSIppi
+(eq? 'bitBlt
+     (string->symbol "bitBlt"))     --> unspecified
+(eq? 'JollyWog
+     (string->symbol
+      (symbol->string 'JollyWog)))  --> #!true
+(string=?
+ "K. Harper, M.D."
+ (symbol->string
+  (string->symbol
+   "K. Harper, M.D.")))             --> #!true
+----
 
-"tdalvina"
+## II.6. Numbers
 
-- ->
+Numerical computation has traditionally been neglected by the Lisp
+community. Until Common Lisp there has been no carefully thought out
+strategy for organizing numerical computation, and with the exception
+of the MacLisp system there has been little effort to execute
+numerical code efficiently. We applaud the excellent work of the
+Common Lisp committee and we accept many of their recommendations. In
+some ways we simplify and generalize their proposals in a manner
+consistent with the purposes of Scheme.
 
-(strng->symbol string)
-essential procedure
-Returns the symbol whose name is string. string->symbol can create
-symbols with special characters or letters in "he non-standard case, but it is
-usually a bad idea to create such symbols because in some implementations
-of Scheme they cannot be read as themselves. See symbol->string.
-'mISSISSIppi
-(string->symbol OnISSISSIppi")
-(eq? 'bitBIt
-(string->symbol "bitBlt"))
-(.q? 'JollyWog
-(string->symbol
-(symbol->string 'JallyWog)))
-(stringe?
-"K. Harper. N.D."
-(symbol->string
-(string->symbol
-OK. Harper. M.D."))
+Scheme's numerical operations treat numbers as abstract data, as
+independent of their representation as is possible. Thus, the casual
+user should be able to write simple programs without having to know
+that the implementation may use fixed-point, floating-point, and
+perhaps other representations for his data. Unfortunately, this
+illusion of uniformity can be sustained only approximately -- the
+implementation of numbers will leak out of its abstraction whenever
+the user must be in control of precision, or accuracy, or when he must
+construct especially efficient computations. Thus the language must
+also provide escape mechanisms so that a sophisticated programmer can
+exercise more control over the execution of his code and the
+represntation of his data when necessary.
 
--->
+It is important to distinguish between the abstract numbers, their
+machine representations, and their written representations. We will
+use mathematical words such as NUMBER, COMPLEX, REAL, RATIONAL, and
+INTEGER for properties of the abstract numbers, names such as FIXNUM,
+BIGNUM, RATNUM, and FLONUM for machine representations, and names like
+INT, FIX, FLO, SCI, RAT, POLAR, and RECT for input/output formats.
 
-Mississippi
+*Numbers*
 
--->
-
-MISSISSIppi
-
---
-
->
-
-unspecified
-
-#true
-
---
-
->
-
-*true
-
-The Revised Revised Report on Scheme
-
-35
-
-11.6. Numbers
-*
-*
-
-Numerical computation has traditionally been neglected by the Lisp cornmunity. Until Common Lisp there has been no carefully thought out strategy
-for organizing numerical computation, and with the exception of the MacLisp
-system there has been little effort to execute numerical code efficiently. We
-applaud the excellent work of the Common Lisp committee and we accept
-many of their recommendations. In some ways we simplify and generalize
-their proposals in a manner consistent with the purposes of Scheme.
-Scheme's numerical operations treat numbers as abstract data, as independent
-of their representation as is possible. Thus, the casual user should be able to
-write simple programs without having to know that the implementation may
-use fixed-point, floating-point, and perhaps other representations for his data.
-Unfortunately, this illusion of uniformity can be sustained only approximately
-implementation of numbers will leak out of its abstraction whenever the
-user must be in control of precision, or accuracy, or when he must construct
-especially efficient computations. Thus the language must also provide escape
-mechanisms so that a sophisticated programmer can exercise more control over
-the execution of his code and the represntation of his data when necessary.
--the
-
-It is important to distinguish between the abstract numbers, their machine
-representations, and their written representations. We will use mathematical
-words such as NUMBER, COMPLEX, REAL, RATIONAL, and INTEGER
-for properties of the abstract numbers, names such as FIXNUM, BIGNUM,
-RATNUM, and FLONUM for machine representations, and names like TNT,
-FIX, FLO, SCI, RAT, POLAR, and RECT for input/output formats.
-Numbers
 A Scheme system provides data of type NUMBER, which is the most
-general numerical type supported by that system. NUMBER is likely to be
-a complicated union type implemented in terms of FIXNUMS, BIGNUMS,
-FLONUMS, and so forth, but this should not be apparent to a naive user.
-What the user should see is that the usual operations on numbers produce
-the mathematically expected results, within the limits of the implementation.
-Thus if the user divides the exact number 3 by the exact number 2, he should
-get something like 1.5 (or the exact fraction 3/2). If he adds that result to
-itself, and the implementation is good enough, he should get an exact 3.
+general numerical type supported by that system. NUMBER is likely to
+be a complicated union type implemented in terms of FIXNUMS, BIGNUMS,
+FLONUMS, and so forth, but this should not be apparent to a naive
+user. What the user should see is that the usual operations on numbers
+produce the mathematically expected results, within the limits of the
+implementation. Thus if the user divides the exact number 3 by the
+exact number 2, he should get something like 1.5 (or the exact
+fraction 3/2). If he adds that result to itself, and the
+implementation is good enough, he should get an exact 3.
+
 Mathematically, numbers may be arranged into a tower of subtypes with
 projections and injections relating adjacent levels of the tower:
 
-%-
-
-%
-
-%
-
-It
-
-The Revised Revised Report on Scheme
-
--
-
-J
-
-W
-
-36
-
-NUMBER
-COMPLEX
-
-4
-
-REAL
-
-h
-
-RATIONAL
+NUMBER +
+COMPLEX +
+REAL +
+RATIONAL +
 INTEGER
-We impose a uniform rule of downward coercion-a number of one type is
-also of a lower type if the injection (up) of the projection (down) of a number
-leaves the number unchanged. Since this tower is a genuine mathematical
-structure, Scheme provides predicates and procedures to access the tower.
-Not all implementations of Scheme must provide the whole tower, but they
-must implement a coherent subset consistent with both the purposes of the
-implementation and the spirit of the Scheme language.
-Exactness
+
+We impose a uniform rule of downward coercion -- a number of one type
+is also of a lower type if the injection (up) of the projection (down)
+of a number leaves the number unchanged. Since this tower is a genuine
+mathematical structure, Scheme provides predicates and procedures to
+access the tower.
+
+Not all implementations of Scheme must provide the whole tower, but
+they must implement a coherent subset consistent with both the
+purposes of the implementation and the spirit of the Scheme language.
+
+*Exactness*
+
 Numbers are either EXACT or INEXACT. A number is exact if it was
 derived from EXACT numbers using only EXACT operations. A number is
-INEXACT if it models a quantity known only approximately, if it was derived
-using INEXACT ingredients, or if it was derived using INEXACT operations.
-Thus INEXACTness is a contagious property of a number. Some operations,
-such as the square root (Of non-square numbers) must be INEXACT because
-of the finite precision of our representations. Other operations are inexact
-because of implementation requirements. We emphasize that exactness is
-independent of the position of the number on the tower. It is perfectly possible
-to have an INEXACT INTEGER or an EXACT REAL; 355/113 may be an
-EXACT RATIONAL or it may be an INEXACT RATIONAL approximation
-to pi, depending on the application.
-Operationally, it is the system's responsibility to combine EXACT numbers
-using exact methods, such as infinite precision integer and rational arithmetic,
-where possible. An implementation may not be able to do this (if it does
-not use infinite precision integers and rationals), but if a number becomes
-inexact for implementation reasons there is likely to be an important error
-condition, such as integer overflow, to be reported. Arithmetic on INEXACT
-numbers is not so constrained. The system may use floating point and other
-ill-behaved represntation strategies for INEXACT numbers. This is not to
-say that implementors need not use the best known algorithms for INEXACT
-computations-only that approximate methods of high quality are allowed.
-In a system that cannot explicitly distinguish exact from inexact numbers
+INEXACT if it models a quantity known only approximately, if it was
+derived using INEXACT ingredients, or if it was derived using INEXACT
+operations. Thus INEXACTness is a contagious property of a number.
+Some operations, such as the square root (of non-square numbers) must
+be INEXACT because of the finite precision of our representations.
+Other operations are inexact because of implementation requirements.
+We emphasize that exactness is independent of the position of the
+number on the tower. It is perfectly possible to have an INEXACT
+INTEGER or an EXACT REAL; 355/113 may be an EXACT RATIONAL or it may
+be an INEXACT RATIONAL approximation to pi, depending on the
+application.
 
-*
+Operationally, it is the system's responsibility to combine EXACT
+numbers using exact methods, such as infinite precision integer and
+rational arithmetic, where possible. An implementation may not be able
+to do this (if it does not use infinite precision integers and
+rationals), but if a number becomes inexact for implementation reasons
+there is likely to be an important error condition, such as integer
+overflow, to be reported. Arithmetic on INEXACT numbers is not so
+constrained. The system may use floating point and other ill-behaved
+represntation strategies for INEXACT numbers. This is not to say that
+implementors need not use the best known algorithms for INEXACT
+computations-only that approximate methods of high quality are
+allowed. In a system that cannot explicitly distinguish exact from
+inexact numbers the system must do its best to maintain precision.
+Scheme systems must not burden users with numerical operations
+described in terms of hardware and operating-system dependent
+representations such as FIXNUM and FLONUM, however, because these
+representation issues are hardly ever germane to the user's problems.
 
-The Revised Revised Report on Scheme
+We highly recommend that the IEEE 32-bit and 64-bit floating-point
+standards be adopted for implementations that use floating-point
+representations internally. To minimize loss of precision we adopt the
+following rules: If an implementation uses several different sizes of
+floating-point formats, the results of any operation with a
+floating-point result must be expressed in the largest format used to
+express any of the floating-point arguments to that operation. It is
+desirable (but not required) for potentially irrational operations
+such as sqrt, when applied to EXACT arguments, to produce EXACT
+answers whenever possible (for example the square root of an exact 4
+ought to be an exact 2). If an EXACT number (or an INEXACT number
+represented as a FIXNUM, a BIGNUM, or a RATNUM) is operated upon so as
+to produce an INEXACT result (as by sqrt), and if the result is
+represented as a FLONUM, then the largest available FLONUM format must
+be used; but if the result is expressed as a RATNUM then the rational
+approximation must have at least as much precision as the largest
+available FLONUM.
 
-37
+*Numerical operations*
 
-the system must do its best to maintain precision. Scheme systems must not
-burden users with numerical operations described in terms of hardware and
-operating-system dependent representations such as FIXNUM and FLONUM,
-however, because these representation issues are hardly ever germane to the
-user's problems.
-We highly recommend that the IEEE 32-bit and 64-bit floating-point standards be adopted for implementations that use floating-point representations
-internally. To minimize loss of precision we adopt the following rules: If an
-implementation uses several different sizes of floating-point formats, the results of any operation with a floating-point result must be expressed in the
-largest format used to express any of the floating-point arguments to that
-operation. It is desirable (but not required) for potentially irrational operations such as sqrt, when applied to EXACT arguments, to produce EXACT
-answers whenever possible (for example the square root of an exact 4 ought
-to be an exact 2). If an EXACT number (or an INEXACT number represented as a FIXNUM, a BIGNUM, or a RATNUM) is operated upon so as to
-produce an INEXACT result (as by sqrt), and if the result is represented as
-a FLONUM, then the largest available FLONUM format must be used; but if
-the result is expressed as a RATNUM then the rational approximation must
-have at least as much precision as the largest available FLONUM.
-Numerical operations
-Scheme provides the usual set of operations for manipulating numbers. In
-general, numerical operations require numerical arguments. For succintness
-we let the following meta-symbols range over the indicated types of object in
-our descriptions, and we let these meta-symbols specify the types of the arguments to numeric operations. It is an error for an operation to be presented
-with an argument that it is not specified to handle.
+Scheme provides the usual set of operations for manipulating numbers.
+In general, numerical operations require numerical arguments. For
+succintness we let the following meta-symbols range over the indicated
+types of object in our descriptions, and we let these meta-symbols
+specify the types of the arguments to numeric operations. It is an
+error for an operation to be presented with an argument that it is not
+specified to handle.
 
-e
+|====
+|_obj_|any object
+|_z_, _z1_, ... _zi_, ...|complex, real, rational, integer
+|_x_, _x1_, ... _xi_, ...|real, rational, integer
+|_q_, _q1_, ... _qi_, ...|rational, integer
+|_n_, _n1_, ... _ni_, ...|integer
+|====
 
-obi
+(*number?* _obj_) [essential procedure] +
+(*complex?* _obj_) [essential procedure] +
+(*real?* _obj_) [essential procedure] +
+(*rational?* _obj_) [essential procedure] +
+(*integer?* _obj_) [essential procedure]
 
-any object
+These numerical type predicates can be applied to any kind of
+argument. They return true if the object is of the named type. In
+general, if a type predicate is true of a number then all higher type
+predicates are also true of that number. Not every system supports all
+of these types; for example, it is entirely possible to have a Scheme
+system that has only INTEGERs. Nonetheless every implementation of
+Scheme must have all of these predicates.
 
-z, z1, ... zi...
-z, zl, ... ri, ...
-q, q1, ... qi, ...
-ni,
-, .... i,...
+(zero? _z_) [essential procedure] +
+(positive? _x_) [essential procedure] +
+(negative? _x_) [essential procedure] +
+(odd? _n_) [essential procedure] +
+(even? _n_) [essential procedure] +
+(exact? _z_) [essential procedure] +
+(inexact? _z_) [essential procedure]
 
-complex, real , rational, integer
-real, rational, integer
-rational, integer
-integer
+These numerical predicates test a number for a particular property,
+returning `#!true` or `#!false`.
 
-(number? obi)
-(complex? obi)
-(real? obj)
-(rational? obj)
-(integer? obj)
+----------------------------------------------------------------------
 
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-
-..-• .-.- . -. ... ..- .. ..-.. -.. • . . .- - . .- ,.
-Z
-
--. --*
-
-*;.
-
--. ..
-
--.-.-.-. -. . -. -.
-
-.. .. ....-.
-
-. -. . . .-......-.
-
-The Revised Revised Report on Scheme
-
-38
-
-These numerical type predicates can be applied to any kind of argument.
-They return true if the object is of the named type. In general, if a type
-predicate is true of a number then all higher type predicates are also true
-of that number. Not every system supports all of these types; for example,
-it is entirely possible to have a Scheme system that has only INTEGERs.
-Nonetheless every implementation of Scheme must have all of these predicates.
-(zero? z)
-essential procedure
-(positive? z)
-essential procedure
-(negative?
-)
-essential procedure
-(odd? n)
-essential procedure
-(even? n)
-essential procedure
-(exact? 4
-essential procedure
-(inexact? z)
-essential procedure
-These numerical predicates test a number for a particular property, returning # I true or # ! false.
-(
-
-z1 z2)
+(= z1 z2)
 essential procedure
 z(1?z2)
 essential procedure
