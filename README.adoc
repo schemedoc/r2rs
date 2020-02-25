@@ -1262,8 +1262,6 @@ elements. Could be defined by
         (list-tail (cdr x) (- n 1)))))
 ----
 
-----------------------------------------------------------------------
-
 (*last-pair* _x_) [procedure]
 
 Returns the last pair in the nonempty list _x_. Could be defined by
