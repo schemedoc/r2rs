@@ -1110,342 +1110,159 @@ from every existing object.
 (cons '(a b) 'c)       --> ((a b) . c)
 ----
 
-----------------------------------------------------------------------
+(*car* _pair_) [essential procedure]
 
-The Revised Revised Report oan Scheme
+Returns the contents of the car field of _pair_. _pair_ must be a
+pair. Note that it is an error to take the car of the empty list.
 
-28
+----
+(car '(abc))           --> a
+(car '((a) bcd))       --> (a)
+(car '(1 . 2))         --> 1
+(car '())              --> error
+----
 
-(car pair)
-essential procedure
-Returns the contents of the car field of pair. pair must be a pair. Note
-that it is an error to take the car of the empty list.
-(car '(abc))
---> a
-(car '((a) bcd))
-(car '(1 .2))
-(car '0)
+(*cdr* _pair_) [essential procedure]
 
-(a)
-1
+Returns the contents of the cdr field of _pair_. _pair_ must be a
+pair. Note that it is an error to take the cdr of the empty list.
 
--->
+----
+(cdr '((a) b c d))     --> (b c d)
+(cdr '(1 . 2))         --> 2
+(cdr '())              --> error
+----
 
-error
+(*set-car!* _pair_ _obj_) [essential procedure]
 
--->
+Stores _obj_ in the car field of _pair_. _pair_ must be a pair. The
+value returned by *set-car!* is unspecified. This procedure can be
+very confusing if used indiscriminately.
 
-(cdr pair)
-essential procedure
-Returns the contents of the cdr field of pair. pairmust be a pair. Note
-that it is an error to take the cdr of the empty list.
+(*set-cdr!* _pair_ _obj_) [essential procedure]
 
-(set-car!
-*"
+Stores _obj_ in the cdr field of _pair_. _pair_ must be a pair. The
+value returned by *set-cdr!* is unspecified. This procedure can be
+very confusing if used indiscriminately.
 
-pair oj)
+(*caar* _pair_) [essential procedure]
+(*cadr* _pair_) [essential procedure]
+(*cdar* _pair_) [essential procedure]
+(*cddr* _pair_) [essential procedure]
+(*caaar* _pair_) [essential procedure]
+(*caadr* _pair_) [essential procedure]
+(*cadar* _pair_) [essential procedure]
+(*caddr* _pair_) [essential procedure]
+(*cdaar* _pair_) [essential procedure]
+(*cdadr* _pair_) [essential procedure]
+(*cddar* _pair_) [essential procedure]
+(*cdddr* _pair_) [essential procedure]
+(*caaaar* _pair_) [essential procedure]
+(*caaadr* _pair_) [essential procedure]
+(*caadar* _pair_) [essential procedure]
+(*caaddr* _pair_) [essential procedure]
+(*cadaar* _pair_) [essential procedure]
+(*cadadr* _pair_) [essential procedure]
+(*caddar* _pair_) [essential procedure]
+(*cadddr* _pair_) [essential procedure]
+(*cdaaar* _pair_) [essential procedure]
+(*cdaadr* _pair_) [essential procedure]
+(*cdadar* _pair_) [essential procedure]
+(*cdaddr* _pair_) [essential procedure]
+(*cddaar* _pair_) [essential procedure]
+(*cddadr* _pair_) [essential procedure]
+(*cdddar* _pair_) [essential procedure]
+(*cddddr* _pair_) [essential procedure]
 
-(b c d)
+These procedures are compositions of *car* and *cdr*, where for
+example *caddr* could be defined by
 
-(cdr '((a) b c d))
-
--->
-
-(cdr '(1. 2))
-(cdr '0)
-
--->2
--->
-
-error
-
-essential procedure
-
-Stores obj in the car field of pair. pairmust be a pair. The value returned
-by set-carl is unspecified. This procedure can be very confusing if used
-indiscriminately.
-
-,.,
-
-.1
-
-(set-cdrl pair obj)
-essential procedure
-Stores obj in the cdr field of pair. pair must be a pair. The value returned
-by set-cdrl is unspecified. This procedure can be very confusing if used
-indiscriminately.
-(caar pair)
-
-It
-
-.4
-
-essential procedure
-
-(cadr pair)
-(ar
-pair)
-
-essential procedure
-essential procedure
-
-(cddr pair)
-(caaar pair)
-(caadr pair)
-(cadar pair)
-
-essential
-essential
-essential
-essential
-
-procedure
-procedure
-procedure
-procedure
-
-(caddr pair)
-(cdaar pair)
-(cdadr pair)
-(cddar pair)
-(cdddr pair)
-(caaaar pair)
-(caaadr pair)
-(caadar pair)
-
-essential
-essential
-essential
-essential
-essential
-essential
-
-procedure
-procedure
-procedure
-procedure
-procedure
-procedure
-
-essential procedure
-essential procedure
-
-,
-
-The Revised Revised Report on Scheme
-
-(caaddr
-(cadaar
-(cadadr
-(caddar
-(cadddr
-(cdaaar
-(cdaadr
-(cdadar
-(cdaddr
-(cddaar
-(cddadr
-(cdddar
-(cddddr
-
-29
-
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-essential procedure
-
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-pair)
-
-.
-
-These procedures are compositions of car and cdr, where for example
-caddr could be defined by
+----
 (define caddr (lambda (x) (car (cdr (cdr x)))))
-0(essential
-constant
-#nuiI
-constant
-' 0 and #1null are notations for the empty list. The *Inull notation
-does not have to be quoted in programs. The ) notation must be quoted in
-programs, however, because otherwise it would be a procedure call without a
-expression in the procedure position.
-Rationale: Because many current Scheme interpreters deal with expressions
-as list structures rather than as character strings, they will treat an unquoted
-() as though it were quoted. It is entirely possible, however, that some
-implementations of Scheme will be able to detect an unquoted ) as an error.
-(null? obj)
-essential procedure
-Returns #true if obj is the empty list, otherwise returns Iflalse.
-(nost obi ... )
+----
+
+`'()` [essential constant] +
+`#!null` [constant]
+
+`'()` and `#!null` are notations for the empty list. The `#!null`
+notation does not have to be quoted in programs. The `()` notation
+must be quoted in programs, however, because otherwise it would be a
+procedure call without a expression in the procedure position.
+
+_Rationale_: Because many current Scheme interpreters deal with
+expressions as list structures rather than as character strings, they
+will treat an unquoted `()` as though it were quoted. It is entirely
+possible, however, that some implementations of Scheme will be able to
+detect an unquoted `()` as an error.
+
+(*null?* _obj_) [essential procedure]
+
+Returns `#!true` if _obj_ is the empty list, otherwise returns
+`#!false`.
+
+(*list* _obj1_ ...) [essential procedure]
+
 Returns a proper list of its arguments.
 
-essential procedure
+----
+(list 'a (+ 3 4) 'c)   --> (a 7 c)
+----
 
-(list 'a (4 3 4) ')
+(*length* _plist_) [essential procedure]
 
--->
+Returns the length of _plist_, which must be a proper list.
 
-(a 7 )
+----
+(length '())              --> 0
+(length '(a b c))         --> 3
+(length '(a (b) (c d e))) --> 3
+----
 
-.
+(*append* _plist1_ _plist2_) [essential procedure] +
+(*append* _plist_ ...) [procedure]
 
-9.
+All _plists_ should be proper lists. Roturns a list consisting of the
+elements of the first _plist_ followed by the elements of the other
+_plists_.
 
-".
+----
+(append '(x) '(y))        --> (x y)
+(append '(a) '(b c d))    --> (a b c d)
+(append '(a (b)) '((c)))  --> (a (b) (c))
+----
 
-,o'
+(*append!* _plist_ ...) [procedure]
 
-~.
-. ..
+Like *append* but may side effect all but its last argument.
 
-*-
+(*reverse* _plist_) [procedure]
 
-.*..
+_plist_ must be a proper list. Returns a list consisting of the
+elements of _plist_ in reverse order.
 
-,
+----
+(reverse '(a b c))                  --> (c b a)
+(reverse '(a (b c) d (e (f))))      --> ((e (f)) d (b c) a)
+----
 
-.
-•.
+(*list-ref* _z_ _n_) [procedure]
 
-.'
+Returns the car of (*list-tail* _z_ _n_).
 
-".. .*:,
+(*list-tail* _z_ _n_) [procedure]
 
-.*-~.-
+Returns the sublist of _z_ obtained by omitting the first _n_
+elements. Could be defined by
 
-.
+----
+(define list-tail
+  (lambda (x n)
+    (if (zero? n)
+        x
+        (list-tail (cdr x) (- n 1)))))
+----
 
-*-*,'
-
-*-,'..
-
-.
-
--,-
-
--
-
--
-
-.*
-
-.
-
-. , * ",
-
-.
-
-,"
-
-,n
-
--' '
-
--
-
-..
-
-e .- -
-
--
-
-30
-
-The Revised Revised Report on Scheme
-
-essential procedure
-(length plist)
-Roturms the length of pliet, which must be a proper list.
-(length '0)
-3
-(length '(a b c)
-->0
-
--
-
-(length '(a, (b) (c d.)))
-*
-
-->3
-
-essential procedure
-pListg)
-(append plt
-(append plit .. )procedure
-All plists should be proper lists. Roturns a list consisting of the elements
-of the first plit followed by the elements of the other pliets.
-(append '(x) '(y))
-(append '(a) '(b c di))
-(append '(a (b)) '((c)))
-(appendS
-
-plist
-
-..
-
-(xy)
-U->
-
---
-
-(a b c d)
-(a (b) (c)
-
-)procedure
-
-Like append but may side effect all but its last argument.
-procedure
-(reverse plist)
-pliat must be a proper list. Returns a list consisting of the elements of
-pliet in reverse order.
-(reverse '(a b c))
-(reverse '(a (b 0) d (e M1)))
-
-(-c b a)
---
-
-(fC))
-
-(lint-ref z a)
-Returns the car of (list-tail z a).
-
-d (b c) a)
-
-procedure
-
-procedure
-(list-tail z a)
-Returns the sublist of z obtained by omitting the first a elements. Could
-be defined by
-(defin, list-tail
-
-(lambda (x n)
-(it (zero? n)
-x
-
-(list-tail (cdr x) C-n MM))
+----------------------------------------------------------------------
 
 The Revised Revised Report on Scheme
 
