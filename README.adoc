@@ -1755,47 +1755,6 @@ procedure
 In general, these are intended to implement number-theoretic (integer)
 division: For positive integers n1 and n 2 , if n3 and n 4 are integers such that
 
-• .
-
-,.-. '..-..
--..
-
-..
-
-%.'-.-..
-
--
-
-..- ...
-
-..........
-
-......
-
-.............................
-
-..
-
-...
-
-"..'..........
-
-.....-..
-
-..
-
-....
-
-..
-
-.
-
--
-
-.
-
-.
-
 /
 
 The Revised Revised Report on Scheme
@@ -2093,52 +2052,6 @@ exactness precision radix8
 precision radix8 exactness
 precision exactness radix8
 
-...
-
-,~..
-
-,,..•,.......
-
-.....................
-
-,
-
-,
-
-.....
-
-:....,....-.,......
-
-.
-°
-
-.'
-
-**.- ,
-
-.. ,.,..-.
-
-.,",'...-................
-
-..
-
-,-,,...... ..
-
-*,........-*.-
-
--. ,.
-..
-
--,
-,o-.'.
-
-..-
-
-,,.,,,.
-
-'
-,,/
-
 The Revised Revised Report on Scheme
 
 prefixlO
@@ -2386,16 +2299,6 @@ which is a symbol such as SCI. Following the descriptor are parameters used
 by that descriptor, such as the number of significant digits to be used. Default
 values are supplied for any parameters that are omitted. Modifiers may appear
 
-..
-
-..
-
-%
-
-%.
-
-.
-
 The Revised Revised Report on Scheme
 
 46
@@ -2470,45 +2373,6 @@ B (binary), 0 (octal), D (decimal), or X (hex). a indicates whether the radix
 label is to be E (expressed) or S (suppressed). s defaults to E. If no radix
 modifier is specified then the default is decimal and the label is suppressed.
 
-d
-
-*
-
-*&
-
--
-
-.
-
-.
-
-~
-
--~~~
-
-7
-
-~
-
-~
-
-~
-
-7-.
-
-67
-
-77-' '-
-
--
-
--
-
-.
-
-*
-
-.
 
 L,,.
 
@@ -2581,72 +2445,6 @@ Either all the digits precede all the lower case letters, or vice versa.
 For example, (char<?
 
 #\A
-
-I.
-
-*..
-
-.
-
-•
-
-_
-
-.
-
-. %... /
-
-.
-
-.
-
-.
-
-~.
-
-.
-
-.
-
-.
-
-.
-
-.'*.
-
-,.
-
-.
-
-*
-
-.. .
-
-.
-
-.
-
--
-
-.
-
--
-
-...
-
-.
-
--
-
-. ..
-
--.
-
-°..
-
--'.-
-
-.
 
 49
 
@@ -2866,23 +2664,6 @@ of string beginning with index start and ending with index end.
 
 AL
 
-4,.
-.-.-.
-
-. . ..
-
-. .
-
-. .
-
-.
-
-.--
-
--
-
-,,...
-
 53
 
 The Revised Revised Report on Scheme
@@ -2939,31 +2720,6 @@ The procedures differ only when .1 and 82 are eq? and the substring being
 moved overlaps the substring being replaced. In this case, substring-moveright I copies serially, starting with the rightmost element and proceeding to
 the left, while substring-move-left I begins with the leftmost element and
 proceeds to the right.
-
-I
-
-%'
-
-a
-
-IiII%
-III
-
-....,.-o . ,...
--,,',.,
-,,,,°%+ , .."'
-',+,..,..
-,,,,.',,+,,
-, . ,,...
-+.-.,'..'....+
-. +.-+'+."
-.
-%"%
-
-',,
-
-o, y ' ' +? ...
-/..;, ".+,-,',,.:.,
 
 L.
 
@@ -3109,27 +2865,6 @@ x
 
 >>> (obJect-unhash 77)
 ill-defined: `#!false` or (0.0)
-
-%
-
-V ,,
-
-%%
-%
-
-*
-
--A
-
--
-
-* ji*,
-
-,
-
-ri
-
--
 
 The Revised Revised Report on Scheme
 
@@ -3324,21 +3059,7 @@ J-operator. John Reynolds described a simpler but equally powerful construct
 in 1972. The catch special form described by Sussman and Steele in the 1975
 report on Scheme is exactly the same as Reynolds's construct, though its name
 
-s.
-
-.
-
-k
-
-L
-
 The Revised Revised Report on Scheme
-
-.
-
-"
-
-T
 
 60
 
@@ -3348,14 +3069,6 @@ form was noticed in 1982 by the implementors of Scheme 311, and the name
 call-with-current-continuation was coined later that year. Although the
 name is descriptive, some people feel it is too long and have taken to calling
 the procedure call/cc.
-
-I.
-
->!
-
-.
-
-..
 
 The Revised Revised Report on Scheme
 
@@ -3410,21 +3123,6 @@ thunk is a procedure of no arguments, and string is a string naming a file.
 For with-input-from-file, the file must already exist; for with-outputto-f ile, the effect is unspecified if the file already exists. The file is opened
 for input or output, an input or output port connected to it is made the
 default value returned by current-input-port or current-output-port,
-
-V
-6-
-
-.
-
-.......~*
-
-.
-
-..*
-
-.-.
-
-.
 
 The Revised Revised Report on Scheme
 
@@ -3591,29 +3289,7 @@ Writes the character char (not a written representation of the character)
 to the given port and returns an unspecified value. The port argument may be
 omitted, in which case it defaults to the value returned by current-outputport.
 
-,
-
-*I .
-
-~
-
-.I
-
-*~
-
-*-
-
-*
-
-*:.
-
-*~*~*~.~
-
-I%
-
 The Revised Revised Report on Scheme
-
--.
 
 66
 
@@ -3630,43 +3306,11 @@ values returned by these procedures are unspecified.
 Rationale: These procedures are redundant in some systems, but systems that
 need them should provide them.
 
-%
-
-Oo..
-
-.4.
-
-.'"'..',."-.'-.:-°
-." .-.
-","."..
-...
-..-.'." --:'.:..'-:-'..":,':/.
-.''.-"'.
-": '.-'..'-.. ....
-
-'. .'.,.-..
-...-..
-".'...-,.--.-.
-.-.-..
-
-."."..
-
-..
-
-.
-
-.
-
-.','..
-. .
-
-.
-
-. '2
-
 The Revised Revised Report on Scheme
 
 67
+
+----------------------------------------------------------------------
 
 ## Bibliography and References
 
