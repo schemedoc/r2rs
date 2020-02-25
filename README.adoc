@@ -1264,134 +1264,65 @@ elements. Could be defined by
 
 ----------------------------------------------------------------------
 
-The Revised Revised Report on Scheme
+(*last-pair* _x_) [procedure]
 
-*
+Returns the last pair in the nonempty list _x_. Could be defined by
 
-31
-
-procedure
-(last-pair x)
-Roturms the last pair in the nonempty list x. Could be defined by
+----
 (define last-pair
-(lambda Wx
-(if (pair? (cdr x))
-(last-pair (cdr x))
+  (lambda (x)
+    (if (pair? (cdr x))
+        (last-pair (cdr x))
+        x)))
+----
 
-(maemq Obi pliat)
-essential procedure
-(memav obi pliat)
-essential procedure
-(3caember obi plst)
-essential procedure
-Finds the first occurrence of obi in the proper list pliat and returns the
-first sublist of pliat beginning with obj. If obi does not occur in pliet, returns
-If false. memq uses eq? to compare o bi with the elements of pliat, while menv
-uses eqv? and member uses equal?.
+(*memq* _obj_ _plist_) [essential procedure] +
+(*memv* _obj_ _plist_) [essential procedure] +
+(*member* _obj_ _plist_) [essential procedure]
 
-(meaq 'a '(a b 0)
-(memq lb '(a b c)
-(memq 'a '(b c d))
-(memq (list 'a) '(b (a) 0)
-(memq 101 '(100 101 102))
-(memv 101 '(100 101 102))
-(member (list 'a) '(b (a)c))
+Finds the first occurrence of _obj_ in the proper list _plist_ and
+returns the first sublist of _plist_ beginning with _obj_. If _obj_
+does not occur in _plist_, returns `#!false`. *memq* uses *eq?* to
+compare _obj_ with the elements of _plist_, while *memv* uses *eqv?*
+and *member* uses *equal?*.
 
-(assq obj cat)
+----
+(memq 'a '(a b c)                   --> (a b c)
+(memq 'b '(a b c)                   --> (b c)
+(memq 'a '(b c d))                  --> #!false
+(memq (list 'a) '(b (a) c))         --> #!false
+(memq 101 '(100 101 102))           --> unspecified
+(memv 101 '(100 101 102))           --> (101 102)
+(member (list 'a) '(b (a) c))       --> ((a) c)
+----
 
-(a b c)
-(b c)
+(*assq* _obj_ _alist_) [essential procedure] +
+(*assv* _obj_ _alist_) [essential procedure] +
+(*assoc* _obj_ _alist_) [essential procedure]
 
-->*Ifalse
-->
-->
+_alist_ must be a proper list of pairs. Finds the first pair in
+_alist_ whose car field is _obj_ and returns that pair. If no pair in
+_alist_ has _obj_ as its car, returns `#!false`. *assq* uses *eq?* to
+compare _obj_ with the car fields of the pairs in _alist_, while
+*assv* uses *eqv?* and *assoc* uses *equal?*.
 
->
-
-#Jfalse
-unspecified
-(101 102)
-((a) c)
-
-essntial procedure
-(assv obi adiet)
-essential procedure
-(assoc Ob1 cait)
-essential procedure
-ous~t must be a proper list of pairs. Finds the first pair in alist whose car
-field is obj and returns that pair. If no pair in cat has obj as its car, returns
-#Iffalse. assq uses eq? to compare obj with the car fields of the pairs in
-adiet, while assv uses eqv? and assoc uses equal?.
-(assq 'a '((a 1) (b 2) (c 3)
--(a 1)
-(assq 'b '((a 1) (b 2) (c 3)
--(b 2)
-(assq 'd '((a 1) (b 2) (c 3)))
--f#falso
+----
+(assq 'a '((a 1) (b 2) (c 3)))      --> (a 1)
+(assq 'b '((a 1) (b 2) (c 3)))      --> (b 2)
+(assq 'd '((a 1) (b 2) (c 3)))      --> #!false
 (assq (list 'a)
-'(((a)) (Wb)
-((c))))
--#false
-(aasq 5 '(( 3) (5 7) (11 13)))
-->
-unspecified
-(assv 5 '((2 3) (5 7) (11 13)))
-->
-(5 7)
+      '(((a)) ((b)) ((c))))         --> #!false
+(assq 5 '((2 3) (5 7) (11 13)))     --> unspecified
+(assv 5 '((2 3) (5 7) (11 13)))     --> (5 7)
 (assoc (list 'a)
+       '(((a)) ((b)) ((c))))        --> ((a))
+----
 
-((b)
+_Rationale_: *memq*, *memv*, *member*, *assq*, *assv*, and *assoc* do
+not have question marks in their names because they return useful
+values rather than just `#!true`.
 
-V
-
-. .....
------
-
-The Revised Revised Report on Scheme
-
-82
-
-Rationale: nenq. mear. member, assq. assv, and assoc do not have question marks in their names because they return useful values rather than just
-
-*
-.
-
-;
-
-`#!true`.
-
-"
-.
-
-.
-,_
-
-%
-
-%
-
-%
-
-I.
-r
-
-'.* .
-
-ft-
-
-:"
-"'"" '".........................................'
-
-.,, - ,'/' . , / '. ,. .'e '.
-
-, .',.
-
-a"-. .
-"-...
-
-q
-
-e,.
+----------------------------------------------------------------------
 
 The Revised Revised Report on Scheme
 
