@@ -1008,260 +1008,109 @@ structures.
     (equal? (make-vector 5 'a)
             (make-vector 5 'a))     --> #!true
 
-----------------------------------------------------------------------
+### II.4. Pairs and lists
 
-11.4. Pairs and lists
-S.,
+Lists are Lisp's--and therefore Scheme's--characteristic data
+structures.
 
-Lists are Lisp's--and therefore Scheme'&--characteristic data structures.
+The empty list is a special object that is written as an opening
+parenthesis followed by a closing parenthesis: `()` The empty list has
+no elements, and its length is zero. The empty list is not a pair.
 
-The empty list is a special object that is written as an opening parenthesis
-followed by a closing parenthesis: 0 The empty list has no elements, and its
-length is zero. The empty list is not a pair.
-Larger lists are built out of pairs. A pair (sometimes called a "dotted pair")
-is a record structure with two fields called the car and cdr fields (for historical
-reasons). Pairs are created by the procedure named cons. The car and cdr
-fields are accessed by the procedures car and cdr. The car and cdr fields are
-assigned by the procedures set-carl and set-cdrl.
+Larger lists are built out of pairs. A pair (sometimes called a
+"dotted pair") is a record structure with two fields called the car
+and cdr fields (for historical reasons). Pairs are created by the
+procedure named *cons*. The car and cdr fields are accessed by the
+procedures *car* and *cdr*. The car and cdr fields are assigned by the
+procedures *set-car!* and *set-cdr!*.
 
-r
+The most general notation used for Scheme pairs is the "dotted"
+notation `(c1 . c2)` where _c1_ is the value of the car field and _c2_
+is the value of the cdr field. For example `(4 . 5)` is a pair whose
+car is 4 and whosecdr is 5.
 
-The most general notation used for Scheme pairs is the 'dotted' notation
-(eI
-e) where eI is the value of the car field and c2 is the value of the
-cdr field. For example (4 . 5) is a pair whose car is 4 and whosecdr is 5.
-.
+The dotted notation is not often used, because more streamlined
+notations exist for the common case where the cdr is the empty list or
+a pair. Thus `(c1 . ())` is usually written as `(c1)`, and `(c1 . (c2
+. c3))` is usually written as `(c1 c2 . c3)`. Usually these special
+notations permit a structure to be written without any dotted pair
+notation at all. For example
 
-The dotted notation is not often used, because more streamlined notations
-exist for the common case where the cdr is the empty list or a pair. Thus (ei
-0) is usually written as (cl), and (el . (S . cS )) is usually written
-as (ci ci . cS ).Usually these special notations permit a structure to be
-written without any dotted pair notation at all. For example
-(a
+----
+(a . (b . (c . (d . (e. ())))))
+----
 
-.
+would normally be written as `(a b c d e)`.
 
-(b . (c . (d . (e. ()1)))
+When all the dots can be made to disappear as in the example above,
+the entire structure is called a proper list. Proper lists are so
+common that when people speak of a list, they usually mean a proper
+list. An inductive definition:
 
-would normally be written as (a b c d e).
-When all the dots can be made to disappear as in the example above, the
-entire structure is called a proper list. Proper lists are so common that when
-people speak of a list, they usually mean a proper li.,t. An inductive definition:
-0
+* The empty list is a proper list.
 
-The empty list is a proper list.
+* If _plist_ is a proper list, then any pair whose cdr is _plist_ is
+  also a proper list.
 
-*
+* There are no other proper lists.
 
-If plist is a proper list, then any pair whose cdr is plist is also a proper
+A proper list is therefore either the empty list or a pair from which
+the empty list can be obtained by applying the cdr procedure a finite
+number of times. Whether a given pair is a proper list depends upon
+what is stored in the cdr field. When the *set-cdr!* procedure is
+used, an object can be a proper list one moment and not the next:
 
-"
-5.
+----
+(define x '(a b c))    --> unspecified
+(define y x)           --> unspecified
+y                      --> (a b c)
+(set-cdr! x 4)         --> unspecified
+x                      --> (a . 4)
+(eq? x y)              --> #!true
+y                      --> (a . 4)
+----
 
-list.
-
-*
-
-There are no other proper lists.
-
-A proper list is therefore either the empty list or a pair from which the empty
-list can be obtained by applying the cdr procedure a finite number of times.
-Whether a given pair is a proper list depends upon what is stored in the cdr
-field. When the set-cdrl procedure is used, an object can be a proper list
-
--N,
-
-27
-
-The Revised Revised Report on Scheme
-
-one moment and not the next:
-
-*
-
-(define x '(a b c))
-
--->
-
-(define y x)
-
--->
-
-y
-
--->
-
-(set-cdr! x 4)
-X
-(eq? x y)
-
--->
--->
--->
-
-unspecified
-unspecified
-
-(a b c)
-unspeified
-(a . 4)
-#itrue
-
-(a . 4)
 A pair object, on the other hand, will always be a pair object.
 
-y
+It is often convenient to speak of a homogeneous (proper) list of
+objects of some particular data type, as for example `(1 2 3)` is a
+list of integers. To be more precise, suppose _D_ is some data type.
+(Any predicate defines a data type consisting of those objects of
+which the predicate is true.) Then
 
--->
+* The empty list is a list of _D_.
 
-It is often convenient to speak of a homogeneous (proper) list of objects of
-some particular data type, as for example (1 2 3) is a list of integers. To
-be more precise, suppose D is some data type. (Any predicate defines a data
-type consisting of those objects of which the predicate is true.) Then
-0 The empty list is a list of D.
-* Ifplit is a list of D, then any pair whose cdr is pli8t and whose car is an
-element of the data type D is also a list of D.
-. There are no other lists of D.
-(pair?
+* If _plist_ is a list of _D_, then any pair whose cdr is _plist_ and
+  whose car is an element of the data type _D_ is also a list of _D_.
 
-o6l)
+* There are no other lists of _D_.
 
-essential procedure
+(*pair?* _obj_) [essential procedure]
 
-Returns `#!true` if ob is a pair, otherwise returns
-(pair?
-(pair?
-(pair?
-(pair?
+Returns `#!true` if _obj_ is a pair, otherwise returns `#!false`.
 
-'(a .
-'(a b
+----
+(pair? '(a . b))       --> #!true
+(pair? '(a b c))       --> #!true
+(pair? '())            --> #!false
+(pair? '#(a b))        --> #!false
+----
 
-b))
+(*cons* _obj1_ _obj2_) [essential procedure]
 
-))
-'0)
-'#(a b))
+Returns a newly allocated pair whose car is _obj1_ and whose cdr is
+_obj2_. The pair is guaranteed to be different (in the sense of *eq?*)
+from every existing object.
 
-Ifalse.
+----
+(cons 'a '())          --> (a)
+(cons '(a) '(b c d))   --> ((a) b c d)
+(cons "a" '(b c))      --> ("a" b c)
+(cons 'a 3)            --> (a . 3)
+(cons '(a b) 'c)       --> ((a b) . c)
+----
 
--->
-
-Citrue
-
--->
-
-Citrue
-
--->
-
-#alse
-#ifalse
-
--->
-
-(cons oel obg)
-
-essential procedure
-
-Returns a newly allocated pair whose car is obji and whose cdr is obj*.
-The pair is guaranteed to be different (in the sense of eq?) from every existing
-
-object.
-
-o.-.
-,- .,*.-,.-.-..
-
-• ,.
-' .%,.
-
-.-.
-
-' .' .. '% %
-
-%
-
-.
-
-'..'
-,' .' .'%',,
-
-(cons 'a '0)
-(cons '(a) '(b c d))
-(cons "a" '(b c))
-(cons 'aS)
-
--->
--->
-
-(a)
-((a) b c d)
-
--->
-
-("a" b )
-
--->
-
-(a .3)
-
-(cons '(a b) 'c)
-
--->
-
-((a b)
-
-,........,..
-
-.
-
-.
-
-.
-
-'
-
-. '.'
-
-.........
-,
-
-,....
-
-',,
-
-' ,
-
-' ' ' ,,. .
-
-..
-
-..'.
-
-..
-
-.'
-
-.)'
-
-,-.,,.,.--.....
-
-'.',
-
--'-
-
-..
-
-' -. • - - ,
-
-*
-
-5-, 4,
-
-,- S-%
-,
-
--
+----------------------------------------------------------------------
 
 The Revised Revised Report oan Scheme
 
